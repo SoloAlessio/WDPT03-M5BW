@@ -1,4 +1,5 @@
 import { Navbar, NavDropdown, Nav, Form, Container } from "react-bootstrap";
+import * as Icon from "react-bootstrap-icons";
 
 export default function NavBar() {
   return (
@@ -10,7 +11,7 @@ export default function NavBar() {
             viewBox="0 0 24 24"
             data-supported-dps="24x24"
             fill="currentColor"
-            class="mercado-match"
+            className="mercado-match"
             width="24"
             height="24"
             focusable="false"
@@ -33,21 +34,59 @@ export default function NavBar() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="#" disabled>
-              Link
+            <Nav.Link
+              href="#action1"
+              className="d-flex flex-column align-items-center justify-content-between g-3"
+            >
+              <Icon.HouseFill />
+              <span className="fs-7">Home</span>
             </Nav.Link>
+
+            <Nav.Link
+              href="#action1"
+              className="d-flex flex-column align-items-center justify-content-between g-3"
+            >
+              <Icon.PeopleFill />
+              <span className="fs-7">Rete</span>
+            </Nav.Link>
+
+            <Nav.Link
+              href="#action1"
+              className="d-flex flex-column align-items-center justify-content-between g-3"
+            >
+              <Icon.BriefcaseFill />
+              <span className="fs-7">Lavoro</span>
+            </Nav.Link>
+
+            <Nav.Link
+              href="#action1"
+              className="d-flex flex-column align-items-center justify-content-between g-3"
+            >
+              <Icon.ChatLeftDots />
+              <span className="fs-7">Messaggi</span>
+            </Nav.Link>
+
+            <Nav.Link
+              href="#action1"
+              className="d-flex flex-column align-items-center justify-content-between g-3"
+            >
+              <Icon.BellFill />
+              <span className="fs-7">Notifiche</span>
+            </Nav.Link>
+
+            <Nav.Item className="d-flex flex-column align-items-center justify-content-between g-3">
+              <Icon.PersonCircle />
+              <NavDropdown title="Link" id="navbarScrollingDropdown">
+                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                <NavDropdown.Item href="#action4">
+                  Another action
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action5">
+                  Something else here
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav.Item>
           </Nav>
         </Navbar.Collapse>
       </Container>
