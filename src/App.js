@@ -1,7 +1,7 @@
 import "./App.scss";
 import MyFooter from "./components/Footer/MyFooter";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/NavBar/NavBar";
 import Main from "./components/Main";
 import NotFound from "./components/NotFound";
 function App() {

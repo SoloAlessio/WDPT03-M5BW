@@ -1,9 +1,9 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { useCallback, useEffect, useState } from "react";
-import Jumbotron from "./Jumbotron/Index";
-
+import Jumbotron from "./Jumbotron/Index.jsx";
 export default function Main() {
   const [myProfile, setMyProfile] = useState({});
+  console.log(process.env.REACT_APP_MY_TOKEN);
 
   const getMyProfile = useCallback(() => {
     fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
@@ -14,11 +14,9 @@ export default function Main() {
       .then((r) => r.json())
       .then(setMyProfile);
   }, []);
-
   useEffect(() => {
     getMyProfile();
   }, [getMyProfile]);
-
   return (
     <Container className="mt-4">
       <Row>
