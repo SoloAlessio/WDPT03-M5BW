@@ -1,22 +1,26 @@
+import { useState, useEffect, useCallback } from "react";
+import { useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
-import { useCallback, useEffect, useState } from "react";
-import Jumbotron from "./Jumbotron/Index.jsx";
-export default function Main() {
+import Jumbotron from "./Jumbotron/Index";
+
+export default function ProfileDetail() {
   const [myProfile, setMyProfile] = useState({});
+  const { id } = useParams();
 
   const getMyProfile = useCallback(() => {
-    fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
+    fetch(`https://striveschool-api.herokuapp.com/api/profile/${id}`, {
       headers: {
         Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
       },
     })
       .then((r) => r.json())
       .then(setMyProfile);
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     getMyProfile();
   }, [getMyProfile]);
+
   return (
     <Container className="mt-4">
       <Row>

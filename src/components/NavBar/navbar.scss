@@ -38,3 +38,14 @@
         }
     }
 }
+
+#profile-search-area{
+    position: absolute;
+    top: calc(100% + 8px);
+    list-style: none;
+    background-color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0,0,0,.15);
+    width: 100%;
+}
