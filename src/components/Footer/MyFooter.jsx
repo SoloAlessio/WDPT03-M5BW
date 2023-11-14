@@ -147,21 +147,6 @@ export default function MyFooter() {
                   }}
                   href="https://www.linkedin.com/help/linkedin?trk=d_flagship3_profile_view_base"
                   id="questions-help-center"
-                  style={{
-                    textDecoration: "none",
-                    color: "rgb(0 0 0/.6)",
-                    opacity: 0.7,
-                    fontSize: 14,
-                    fontWeight: 600,
-                  }}
-                  onMouseOver={(e) => {
-                    e.target.style.textDecoration = "underline";
-                    e.target.style.opacity = 1;
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.style.textDecoration = "none";
-                    e.target.style.opacity = 0.5;
-                  }}
                 >
                   Gestisci il tuo account e la tua privacy{" "}
                 </a>
