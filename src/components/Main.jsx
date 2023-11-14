@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap"
-import Jumbotron from "./Jumbotron/Index"
 import { useCallback, useEffect, useState } from "react"
+import Jumbotron from "./Jumbotron"
 
 export default function Main() {
 
@@ -26,7 +26,7 @@ export default function Main() {
         <Container className="mt-4">
             <Row>
                 <Col xs={8}>
-                    {myProfile && <Jumbotron myProfile={myProfile}/>}
+                    <Jumbotron myProfile={myProfile}/>
                 </Col>
             </Row>
         </Container>

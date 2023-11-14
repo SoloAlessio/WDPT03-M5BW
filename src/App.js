@@ -2,7 +2,7 @@ import "./App.scss";
 import MyFooter from "./components/MyFooter";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from './components/NavBar'
-import Main from "./Components/Main";
+import Main from "./components/Main"
 function App() {
   return (
     <div className="App">
