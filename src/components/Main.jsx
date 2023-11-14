@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap"
 import { useCallback, useEffect, useState } from "react"
-import Jumbotron from "./Jumbotron"
+import Jumbotron from "./Jumbotron/index"
 
 export default function Main() {
 
