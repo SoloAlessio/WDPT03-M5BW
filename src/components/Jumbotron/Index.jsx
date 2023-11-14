@@ -25,9 +25,9 @@ export default function Jumbotron({myProfile}) {
                     </div>
                     <div className="my-4 d-flex justify-content-between">
                         <div>
-                                <h3 className="m-0 fs-4 text">William Costa</h3>
-                                <p className="mb-1">Impiegato operativo</p>
-                                <p className="text-secondary fs-7 m-0">Lonate Pozzolo, Lombardia, Italia · <span className="fw-semibold colorBlu">Informazioni di contatto</span> </p>
+                                <h3 className="m-0 fs-4 text">{myProfile["name"]} {myProfile["surname"]}</h3>
+                                <p className="mb-1">{myProfile["title"]}</p>
+                                <p className="text-secondary fs-7 m-0">{myProfile["area"]} · <span className="fw-semibold colorBlu">Informazioni di contatto</span> </p>
                                 <p className="fs-7 fw-semibold colorBlu">93 collegamenti</p>
                                 <Button  className="rounded-pill fw-semibold btn-blue me-2">Disponibile Per</Button>
                                 <Button  className="rounded-pill fw-semibold btn-white me-2">Aggiungi sezione del profilo</Button>
