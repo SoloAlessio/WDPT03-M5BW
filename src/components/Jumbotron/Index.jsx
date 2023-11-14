@@ -1,13 +1,10 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Pencil, CameraFill } from "react-bootstrap-icons";
-import default_imgProfile from "./default.png"
 import "./jumbotron.scss"
 
 export default function Jumbotron({myProfile}) {
    
     return (
-
-        
         <Container fluid className="bg-white container-fluid border rounded-3">
             <Row>
                 <Col xs={12} className="jumbotronBackground">
@@ -20,7 +17,7 @@ export default function Jumbotron({myProfile}) {
             <Row>
                 <Col xs={12} className="ps-4">
                     <div className="jumbotronProfile">
-                        <img src={default_imgProfile} alt="" />
+                        <img src={myProfile["image"]} className="rounded-circle" alt="" />
                         <Button variant="light" className="rounded-circle"><Pencil /></Button>
                     </div>
                     <div className="my-4 d-flex justify-content-between">
