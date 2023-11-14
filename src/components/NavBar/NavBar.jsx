@@ -7,6 +7,7 @@ import {
   InputGroup,
 } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
+import "./navbar.scss";
 
 export default function NavBar() {
   return (
