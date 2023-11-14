@@ -1,4 +1,16 @@
-$button-color: #0A66C2;
+$btn-color: #0A66C2;
+$hoverbtn-color: #084e94;
+@mixin flex-center() {
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg-white {
+    background-color: white;
+}
+
+
 
 .jumbotronBackground {
     position: relative;
@@ -15,18 +27,79 @@ $button-color: #0A66C2;
         height: 35px;
         width: 35px;
         border-radius: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flex-center;
         background-color: white;
+        cursor: pointer;
         svg {
-            color: $button-color;
+            color: $btn-color;
             font-size: 15px;
-            cursor: pointer;
             &:hover {
-                color: #084e94;
+                color: $hoverbtn-color;
             }
         }
         
     }
 }
+
+.jumbotronProfile {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-top: -130px;
+    z-index: 2;
+    position: relative;
+    img {
+        width: 170px;
+    }
+    button {
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        @include flex-center;
+        margin-bottom: -10px;
+        svg {
+            font-size: 20px;
+        }
+    }
+    }
+    .ms-20 {
+        margin-left: 20%;
+    }
+
+    .fs-7 {
+        font-size: 0.9em;
+    }
+    .btn-blue {
+        background-color: $btn-color;
+        border: 1px solid $btn-color;
+        padding-block: 3px;
+        color: white;
+        cursor: pointer;
+        &:hover {
+            background-color: $hoverbtn-color;
+            border-color: $hoverbtn-color;
+        }
+    }
+    .btn-white {
+        background-color: white;
+        border: 1px solid $btn-color;
+        color: $btn-color;
+        cursor: pointer;
+        padding-block: 3px;
+        &:hover {
+            background-color: rgba(112, 181, 249, 0.2);
+            color: $btn-color;
+        }
+    }
+    .btn-grey {
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0, 0.6);
+        color: rgba(0, 0, 0, 0.6);
+        cursor: pointer;
+        padding-block: 3px;
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.08);
+            color: black;
+            border-color: black;
+        }
+    }
