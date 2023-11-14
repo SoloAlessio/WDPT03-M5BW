@@ -12,6 +12,8 @@ function App() {
       <NavBar />
         <Routes>
           <Route path="/" element={<Main />} />
+          {/* Implementazione di pagina utente per ricerca navabar */}
+          {/* <Route path="/profile/:id" element={<ProfileDetail />} /> */} 
           <Route path="*" element={<NotFound />} />
         </Routes>
       <MyFooter />
