@@ -6,12 +6,13 @@
  possiamo farli su tutta l'app) */
 
 import { Col, Container, Dropdown, DropdownMenu, Row } from "react-bootstrap";
-import { linkGroups, languages } from "../data/LinksAndLanguages";
+import { linkGroups, languages } from "../../data/LinksAndLanguages";
 import {
   QuestionCircleFill,
   GearFill,
   ShieldShaded,
 } from "react-bootstrap-icons";
+import "./footer.scss";
 
 const FooterLink = ({
   href,
@@ -130,6 +131,21 @@ export default function MyFooter() {
 
               <span>
                 <a
+                  style={{
+                    textDecoration: "none",
+                    color: "rgb(0 0 0/.6)",
+                    opacity: 0.7,
+                    fontSize: 14,
+                    fontWeight: 600,
+                  }}
+                  onMouseOver={(e) => {
+                    e.target.style.textDecoration = "underline";
+                    e.target.style.opacity = 1;
+                  }}
+                  onMouseOut={(e) => {
+                    e.target.style.textDecoration = "none";
+                    e.target.style.opacity = 0.7;
+                  }}
                   href="https://www.linkedin.com/help/linkedin?trk=d_flagship3_profile_view_base"
                   id="questions-help-center"
                 >
