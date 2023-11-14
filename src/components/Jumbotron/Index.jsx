@@ -5,7 +5,7 @@ import "./jumbotron.scss";
 
 export default function Jumbotron({ myProfile }) {
   return (
-    <Container fluid className="bg-white border rounded-3">
+    <Container fluid className="bg-white container-fluid border rounded-3">
       <Row>
         <Col xs={12} className="jumbotronBackground">
           <img
@@ -28,10 +28,12 @@ export default function Jumbotron({ myProfile }) {
           </div>
           <div className="my-4 d-flex justify-content-between">
             <div>
-              <h3 className="m-0 fs-4 text">William Costa</h3>
-              <p className="mb-1">Impiegato operativo</p>
+              <h3 className="m-0 fs-4 text">
+                {myProfile["name"]} {myProfile["surname"]}
+              </h3>
+              <p className="mb-1">{myProfile["title"]}</p>
               <p className="text-secondary fs-7 m-0">
-                Lonate Pozzolo, Lombardia, Italia ·{" "}
+                {myProfile["area"]} ·{" "}
                 <span className="fw-semibold colorBlu">
                   Informazioni di contatto
                 </span>{" "}
