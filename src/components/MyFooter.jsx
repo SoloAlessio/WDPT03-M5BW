@@ -68,7 +68,7 @@ const FooterLink = ({
 export default function MyFooter() {
   return (
     <Container
-      className="fixed-bottom"
+      className=""
       fluid
       style={{
         backgroundColor: "#f4f2ee",

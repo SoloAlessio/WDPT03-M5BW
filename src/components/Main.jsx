@@ -1,6 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { useCallback, useEffect, useState } from "react";
 import Jumbotron from "./Jumbotron/Index";
+import AddExperience from "./AddExperience/Index";
 
 export default function Main() {
   const [myProfile, setMyProfile] = useState({});
@@ -27,7 +28,7 @@ export default function Main() {
             <Row>
                 <Col xs={8}>
                     <Jumbotron myProfile={myProfile}/>
-                    
+                    <AddExperience/>
                 </Col>
             </Row>
         </Container>
