@@ -1,5 +1,5 @@
 /* NOTE: 
-- colore del testo
+- colore del testo (grey)
 - effetti dei link (decoration-none) (visited: #8443ce)
 - background-color (tranne che sulla navbar) #f4f2ee
 
