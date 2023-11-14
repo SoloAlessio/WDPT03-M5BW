@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 export default function NavBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [profiles, setprofiles] = useState([]);
+  const [filteredProfiles, setFilteredProfiles] = useState([]);
 
   useEffect(() => {
     fetch("https://striveschool-api.herokuapp.com/api/profile", {
@@ -24,6 +25,16 @@ export default function NavBar() {
       .then((r) => r.json())
       .then(setprofiles);
   }, []);
+
+  function Filter() {
+    setFilteredProfiles(
+      profiles.filter(
+        (p) =>
+          p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          p.surname.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    );
+  }
 
   return (
     <Navbar sticky="top" expand="lg" bg="light">
@@ -46,7 +57,7 @@ export default function NavBar() {
           </Link>
         </Navbar.Brand>
         {/* NAVBAR Search Bar */}
-        <Form>
+        <Form className="position-relative">
           <InputGroup>
             <InputGroup.Text id="basic-addon1" className="border-end-0">
               <Icon.Search />
@@ -58,26 +69,30 @@ export default function NavBar() {
               className="border-start-0"
               onChange={(e) => {
                 setSearchQuery(e.target.value);
+                Filter();
               }}
               value={searchQuery}
             />
           </InputGroup>
-          {searchQuery.length >= 2 && profiles.length > 0 && (
+          {searchQuery && filteredProfiles.length > 0 && (
             <div>
               <ul id="profile-search-area">
-                {profiles
-                  .filter((p) =>
-                    p.name.toLowerCase().includes(searchQuery.toLowerCase())
-                  )
-                  .map((pro) => (
-                    <li key={pro._id}>
-                      <Link to={`/profile/${pro._id}`}>
-                        <h6 onClick={() => setSearchQuery("")}>
-                          {pro.name + " " + pro.surname}
-                        </h6>
-                      </Link>
-                    </li>
-                  ))}
+                {filteredProfiles.slice(0, 5).map((pro) => (
+                  <li key={pro._id}>
+                    <Link
+                      to={`/profile/${pro._id}`}
+                      className="text-decoration-none"
+                    >
+                      <h6
+                        onClick={() => setSearchQuery("")}
+                        className="profile-link"
+                      >
+                        {pro.name + " " + pro.surname}
+                      </h6>
+                      <hr />
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           )}
