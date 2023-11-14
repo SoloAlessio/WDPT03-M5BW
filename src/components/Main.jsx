@@ -3,13 +3,12 @@ import { useCallback, useEffect, useState } from "react";
 import Jumbotron from "./Jumbotron/Index";
 
 export default function Main() {
-  const [myProfile, setMyProfile] = useState();
-  console.log(process.env.REACT_APP_MY_TOKEN);
+  const [myProfile, setMyProfile] = useState({});
 
   const getMyProfile = useCallback(() => {
     fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
       headers: {
-        Authorization: `Berear ${process.env.REACT_APP_MY_TOKEN}`,
+        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
       },
     })
       .then((r) => r.json())
