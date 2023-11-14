@@ -47,7 +47,6 @@ export default function NavBar() {
               viewBox="0 0 24 24"
               data-supported-dps="24x24"
               fill="currentColor"
-              className="mercado-match"
               width="24"
               height="24"
               focusable="false"
@@ -78,18 +77,16 @@ export default function NavBar() {
             <div>
               <ul id="profile-search-area">
                 {filteredProfiles.slice(0, 5).map((pro) => (
-                  <li key={pro._id}>
+                  <li key={pro._id} className="py-2">
                     <Link
                       to={`/profile/${pro._id}`}
-                      className="text-decoration-none"
+                      className="text-decoration-none d-flex align-items-center"
+                      onClick={() => setSearchQuery("")}
                     >
-                      <h6
-                        onClick={() => setSearchQuery("")}
-                        className="profile-link"
-                      >
+                      <Icon.Search />
+                      <span className="profile-link ps-3 fw-semibold">
                         {pro.name + " " + pro.surname}
-                      </h6>
-                      <hr />
+                      </span>
                     </Link>
                   </li>
                 ))}
@@ -102,7 +99,7 @@ export default function NavBar() {
         <Navbar.Collapse id="navbarScroll">
           {/* Full Width device nav Links */}
           <Nav
-            className="ms-auto my-2 my-lg-0 d-none d-md-flex"
+            className="ms-auto my-2 my-lg-0 d-none d-lg-flex"
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
@@ -194,7 +191,7 @@ export default function NavBar() {
           </Nav>
           {/* Mobile device nav Links */}
           <Nav
-            className="ms-auto my-2 my-lg-0 d-flex d-md-none"
+            className="ms-auto my-2 my-lg-0 d-flex d-lg-none"
             style={{ maxHeight: "100px" }}
             id="mobile-nav"
             navbarScroll

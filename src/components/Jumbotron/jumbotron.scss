@@ -48,6 +48,9 @@ $hoverbtn-color: #084e94;
     position: relative;
     img {
         width: 170px;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        background-color: #fff;
     }
     button {
         padding: 0;
