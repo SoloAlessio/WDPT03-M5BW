@@ -1,9 +1,44 @@
+body{
+    background-color: #f4f2ee;
+}
 
-nav{
+// NAVBAR SCSS
+.navbar{
+    .navbar-brand svg{
+        width: 42px;
+        height: 42px;
+        color: #0a66c2;
+    }
+    .input-group > *{
+        background-color: #EDF3F8;
+        border-radius: 0.4rem;
+        border: 0;
+    }
+    .navbar-collapse{
+        svg{
+            color: #00000099;
+            transition: all .2s ease-out;
+        }:hover{
+            color: rgb(0 0 0 / .9);
+        }
 
-    span, a{
-        font-size: 12px!important;
-        font-weight: 400!important;
-        padding: 8px!important;
+        .nav-item{
+            width: 80px;
+            text-align: center;
+        }
+        #mobile-nav .nav-item{
+            width: 100%;
+            text-align: left;
+            
+            a{
+                font-size: 1rem!important;
+                font-weight: 600!important;
+            }
+        }
+        .nav-link, .dropdown-toggle{
+            font-size: 12px!important;
+            font-weight: 400!important;
+            padding-block: 4px!important;
+        }
     }
 }
