@@ -1,5 +1,7 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { Pencil } from "react-bootstrap-icons";
+import { Pencil, CameraFill } from "react-bootstrap-icons";
+import link_back from "./Link_back.jpg"
+import "./jumbotron.scss"
 
 export default function jumbotron() {
     return (
@@ -7,7 +9,12 @@ export default function jumbotron() {
         
             <Container fluid className="bg-light">
                 <Row>
-                    <Col>Ciao</Col>
+                    <Col className="jumbotronBackground">
+                       <img src={link_back} alt="link_back" />
+                       <div className="jumbotron_camera">
+                        <CameraFill/>
+                       </div>
+                    </Col>
                 </Row>
                 <Row>
                     <Col>
