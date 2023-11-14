@@ -62,6 +62,7 @@ export const linkGroups = [
 ];
 
 export const languages = [
+  "Italiano (Italiano)",
   "العربية (Arabo)",
   "Čeština (Ceco)",
   "Dansk (Danese)",
@@ -71,7 +72,6 @@ export const languages = [
   "Français (Francese)",
   "हिंदी (Hindi)",
   "Bahasa Indonesia (Indonesiano)",
-  "Italiano (Italiano)",
   "日本語 (Giapponese)",
   "한국어 (Coreano)",
   "Bahasa Malaysia (Malese)",
