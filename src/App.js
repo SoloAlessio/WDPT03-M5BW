@@ -1,16 +1,18 @@
 import "./App.scss";
 import MyFooter from "./components/MyFooter";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import NavBar from './components/NavBar'
+import NavBar from './components/NavBar/NavBar'
 import Main from "./components/Main"
+import NotFound from "./components/NotFound"
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
       <NavBar />
-      <Main/>
         <Routes>
-          <Route path="/" element="" />
+          <Route path="/" element={<Main />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       <MyFooter />
       </BrowserRouter>
