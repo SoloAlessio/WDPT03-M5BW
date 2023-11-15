@@ -104,9 +104,10 @@ export default function NavBar() {
             navbarScroll
           >
             <Nav.Item>
-              <Nav.Link
-                href="#action1"
-                className="d-flex flex-column align-items-center justify-content-between"
+                       
+              <Link
+                to={`/`}
+                className="d-flex flex-column align-items-center justify-content-between nav-link active"
               >
                 <div className="position-relative">
                   <Icon.HouseFill width="1.5rem" height="1.5rem" />
@@ -115,7 +116,7 @@ export default function NavBar() {
                   </span>
                 </div>
                 <span className="fs-7">Home</span>
-              </Nav.Link>
+              </Link>
             </Nav.Item>
 
             <Nav.Item>
