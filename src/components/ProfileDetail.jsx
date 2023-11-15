@@ -21,6 +21,7 @@ export default function ProfileDetail() {
     getMyProfile();
   }, [getMyProfile]);
 
+
   return (
     <Container className="mt-4">
       <Row>

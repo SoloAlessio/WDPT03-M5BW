@@ -18,6 +18,10 @@ $hoverbtn-color: #084e94;
   position: relative;
   height: 200px;
   padding: 0;
+  >img {
+    object-fit: cover;
+    width: 100%;
+  }
   .jumbotron_camera {
     position: absolute;
     top: 10px;
@@ -107,4 +111,23 @@ $hoverbtn-color: #084e94;
     color: black;
     border-color: black;
   }
+}
+.Modal-imgProfile {
+  .modal-content {
+    background-color: #1B1F23;
+    color: white;
+  }
+  input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+  
+  display: inline-block;
+  
+  cursor: pointer;
+}
+img {
+  width: 250px;
+  height: 250px;
+}
 }

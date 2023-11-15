@@ -1,23 +1,37 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Pencil, CameraFill } from "react-bootstrap-icons";
 import "./jumbotron.scss"
+import { useState } from "react";
+import ModifyImg from "./ModifyImg.jsx"
 
-export default function Jumbotron({myProfile}) {
+export default function Jumbotron({myProfile, getMyProfile, myId}) {
+    
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+
+
+        
    
     return (
         <Container fluid className="bg-white container-fluid border rounded-3">
             <Row>
-                <Col xs={12} className="jumbotronBackground">
-                    <img src="https://static.licdn.com/aero-v1/sc/h/55k1z8997gh8dwtihm11aajyq" alt="link_back" className="rounded-top-3" />
+                <Col xs={12} className="jumbotronBackground d-flex justify-content-center" >
+                    <img  src={myProfile["image"]} alt="link_back" className="rounded-top-3" />
                     <div className="jumbotron_camera">
                         <CameraFill />
                     </div>
+                   
                 </Col>
             </Row>
             <Row>
                 <Col xs={12} className="ps-4">
                     <div className="jumbotronProfile">
-                        <img src={myProfile["image"]} className="rounded-circle" alt="" />
+                        
+                        
+                      <div onClick={myId === myProfile["_id"] ? handleShow : handleClose} style={myId === myProfile["_id"] ? {cursor: "pointer"} : {cursor: "inherit"}} >
+                        <img src={myProfile["image"]} className="rounded-circle" alt=""/>
+                     </div>
                         <Button variant="light" className="rounded-circle"><Pencil /></Button>
                     </div>
                     <div className="my-4 d-flex justify-content-between">
@@ -34,6 +48,7 @@ export default function Jumbotron({myProfile}) {
                     </div>
                 </Col>
             </Row>
+            <ModifyImg show={show} setShow={setShow} myProfile={myProfile} getMyProfile={getMyProfile}/>
         </Container>
 
     )

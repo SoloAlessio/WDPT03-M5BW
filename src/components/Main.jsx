@@ -4,6 +4,7 @@ import Jumbotron from "./Jumbotron/Index.jsx";
 import Experiences from "./Experiences/WorkArea.jsx";
 export default function Main() {
   const [myProfile, setMyProfile] = useState({});
+  const [myId, setMyId] = useState("")
 
   const getMyProfile = useCallback(() => {
     fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
@@ -12,7 +13,7 @@ export default function Main() {
       },
     })
       .then((r) => r.json())
-      .then(setMyProfile);
+      .then(data => {setMyProfile(data); setMyId(data["_id"])});
   }, []);
 
   useEffect(() => {
@@ -20,13 +21,14 @@ export default function Main() {
     window.scrollTo(0, 0)
   }, [getMyProfile]);
 
+
  
 
     return (
         <Container className="mt-4">
             <Row>
                 <Col xs={8}>
-                    <Jumbotron myProfile={myProfile}/>
+                    <Jumbotron myProfile={myProfile} getMyProfile={getMyProfile} myId={myId}/>
                     <Experiences userId={myProfile["_id"]}/>
                 </Col>
             </Row>
