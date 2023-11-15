@@ -5,10 +5,40 @@
         height: 42px;
         color: #0a66c2;
     }
-    .input-group > *{
-        background-color: #EDF3F8;
-        border-radius: 0.4rem;
-        border: 0;
+    Form{
+        .input-group > *{
+            background-color: #EDF3F8;
+            border-radius: 0.4rem;
+            border: 0;
+        }
+
+        #profile-search-area{
+            position: absolute;
+            top: calc(100% + 8px);
+            list-style: none;
+            background-color: #fff;
+            padding: 16px 0;
+            border-radius: 8px;
+            border: 2px solid #f3faf7;
+            width: 100%;
+
+            li{
+                transition: all .15s ease;
+                padding-inline: 16px;
+
+                a{
+                    color: #0a66c2;
+                }
+
+                &:hover{
+                    background-color: #0a66c218;
+                }
+            }
+
+            
+
+           
+        }
     }
     .navbar-collapse{
         svg{
