@@ -6,7 +6,6 @@ import * as Icon from "react-bootstrap-icons";
 const DateDifference = (a, b) => {
   if (a === null) {
     a = new Date();
-    console.log(a, b);
   }
 
   const diffInMilliseconds = Math.abs(a - b);
