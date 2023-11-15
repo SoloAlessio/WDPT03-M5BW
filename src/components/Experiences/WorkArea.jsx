@@ -8,6 +8,7 @@ import { useState } from "react";
 export default function Experiences({ userId }) {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
+   
 
 
   return (
@@ -15,7 +16,7 @@ export default function Experiences({ userId }) {
       <Row>
         <Col xs={12} className="d-flex justify-content-between">
           <h4>Esperienza</h4>
-          <AddExperience userId={userId} show={show} setShow={setShow} />
+          
           <Button variant="light" className="rounded-circle ms-auto" onClick={handleShow}>
             <PlusLg size={25} fill="#00000099" />
           </Button>
@@ -28,6 +29,7 @@ export default function Experiences({ userId }) {
       <Row className="mt-3">
         <SingleExperience />
       </Row>
+      <AddExperience userId={userId} show={show} setShow={setShow} />
     </Container>
   );
 }

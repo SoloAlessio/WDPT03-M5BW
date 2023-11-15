@@ -164,7 +164,9 @@ export default function NavBar() {
             >
               <Icon.PersonCircle width="1.5rem" height="1.5rem" />
               <NavDropdown title="Tu" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                <Link to={`/`} className="dropdown-item ">
+                    Home
+                </Link>
                 <NavDropdown.Item href="#action4">
                   Another action
                 </NavDropdown.Item>

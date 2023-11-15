@@ -14,11 +14,13 @@ export default function Main() {
       .then((r) => r.json())
       .then(setMyProfile);
   }, []);
-console.log(myProfile)
+
   useEffect(() => {
     getMyProfile();
+    window.scrollTo(0, 0)
   }, [getMyProfile]);
 
+ 
 
     return (
         <Container className="mt-4">
