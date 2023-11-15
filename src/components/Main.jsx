@@ -14,18 +14,20 @@ export default function Main() {
       .then((r) => r.json())
       .then(setMyProfile);
   }, []);
-
+console.log(myProfile)
   useEffect(() => {
     getMyProfile();
   }, [getMyProfile]);
-  return (
-    <Container className="mt-4">
-      <Row>
-        <Col xs={8}>
-          <Jumbotron myProfile={myProfile} />
-          <Experiences />
-        </Col>
-      </Row>
-    </Container>
-  );
+
+
+    return (
+        <Container className="mt-4">
+            <Row>
+                <Col xs={8}>
+                    <Jumbotron myProfile={myProfile}/>
+                    <Experiences userId={myProfile["_id"]}/>
+                </Col>
+            </Row>
+        </Container>
+    )
 }
