@@ -48,7 +48,7 @@ const MyFooter = () => (
     style={{
       fontSize: 12,
     }}
-    className="mt-5"
+    className="mt-5 footer"
   >
     <Container>
       <Row>
