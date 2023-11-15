@@ -41,7 +41,7 @@ export default function NavBar() {
       <Container>
         {/* NAVBAR Icon */}
         <Navbar.Brand className="me-2">
-          <Link to={"/"}>
+          <Link to={"/Profile"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -66,7 +66,7 @@ export default function NavBar() {
               aria-label="Cerca"
               aria-describedby="basic-addon1"
               className="border-start-0"
-              onChange={(e) => {
+              onInput={(e) => {
                 setSearchQuery(e.target.value);
                 Filter();
               }}
