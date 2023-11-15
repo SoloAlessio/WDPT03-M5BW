@@ -64,6 +64,12 @@ function AddExperience({userId, expId}) {
     .then((r) => {
       if(r.ok){
         expId ? alert("modificato") : alert("salvato")
+          setRole("");
+          setCompany("");
+          setStartDate("");
+          setEndDate("");
+          setDescription("");
+          setArea("")
       }else{
         alert("oh oh")
       }
@@ -127,13 +133,11 @@ function AddExperience({userId, expId}) {
                 setArea(e.target.value);
               }}  />
             </Form.Group>
+            <Button className='rounded-pill btn-blue' type="submit">
+              Salva
+            </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-        <Button className='rounded-pill btn-blue' type="submit">
-              Salva
-        </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
