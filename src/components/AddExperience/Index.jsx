@@ -21,7 +21,7 @@ function AddExperience({ userId, show, setShow, expId}) {
 
   useEffect(() => {
     if (expId) {
-      fetch(`https://striveschool-api.herokuapp.com/api/profile/:${userId}/experiences/:${expId}`, {
+      fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}`, {
         headers: {
           Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`
         }
@@ -50,7 +50,7 @@ function AddExperience({ userId, show, setShow, expId}) {
       area: area
     }
 
-    const url = expId ? `https://striveschool-api.herokuapp.com/api/profile/:${userId}/experiences/:${expId}` : `https://striveschool-api.herokuapp.com/api/profile/:${userId}/experiences`
+    const url = expId ? `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}` : `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences`
     const method = expId ? "PUT" : "POST"
 
     fetch(url,
