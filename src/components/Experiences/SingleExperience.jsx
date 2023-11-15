@@ -8,6 +8,7 @@ export default function SingleExperience() {
           <img
             src=""
             style={{ width: "48px", height: "48px", backgroundColor: "grey" }}
+            alt="experience-cover"
           />
         </div>
         <div className="details">

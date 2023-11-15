@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import Jumbotron from "./Jumbotron/Index";
+import Experiences from "./Experiences/WorkArea";
 
 export default function ProfileDetail() {
   const [myProfile, setMyProfile] = useState({});
@@ -26,6 +27,7 @@ export default function ProfileDetail() {
       <Row>
         <Col xs={8}>
           <Jumbotron myProfile={myProfile} />
+          <Experiences />
         </Col>
       </Row>
     </Container>
