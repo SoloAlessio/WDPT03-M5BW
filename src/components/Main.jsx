@@ -2,7 +2,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useCallback, useEffect, useState } from "react";
 import Jumbotron from "./Jumbotron/Index.jsx";
 import Experiences from "./Experiences/WorkArea.jsx";
-import AddExperience from "./AddExperience/Index.jsx"
 export default function Main() {
   const [myProfile, setMyProfile] = useState({});
 
@@ -15,7 +14,7 @@ export default function Main() {
       .then((r) => r.json())
       .then(setMyProfile);
   }, []);
-
+console.log(myProfile)
   useEffect(() => {
     getMyProfile();
   }, [getMyProfile]);
@@ -26,8 +25,7 @@ export default function Main() {
             <Row>
                 <Col xs={8}>
                     <Jumbotron myProfile={myProfile}/>
-                    <AddExperience userId={myProfile.userId}/>
-                    <Experiences />
+                    <Experiences userId={myProfile["_id"]}/>
                 </Col>
             </Row>
         </Container>

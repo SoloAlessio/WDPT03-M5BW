@@ -6,7 +6,7 @@ $LightGrey: #919191;
     input::placeholder {
         color: $LightGrey;
     }
-    input[type="text" i], textarea{
+    input[type="text" i], textarea, select{
         border-color: black;
     }
 }

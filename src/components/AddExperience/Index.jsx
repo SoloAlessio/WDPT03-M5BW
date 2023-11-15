@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import "./AddExperience.scss"
+import { toast } from "react-toastify";
+function AddExperience({ userId, show, setShow, expId}) {
 
-function AddExperience({ userId, expId }) {
-  const [show, setShow] = useState(false);
+  
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   const [checked, setChecked] = useState(false);
   const [role, setRole] = useState("")
   const [company, setCompany] = useState("")
@@ -13,6 +13,7 @@ function AddExperience({ userId, expId }) {
   const [endDate, setEndDate] = useState("")
   const [description, setDescription] = useState("")
   const [area, setArea] = useState("")
+  
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -62,16 +63,19 @@ function AddExperience({ userId, expId }) {
         body: JSON.stringify(form)
       })
       .then((r) => {
-        if (r.ok) {
-          expId ? alert("modificato") : alert("salvato")
+        if (r.ok) { 
+          toast.success(
+            expId ? "modificato" : "salvato"
+          );
           setRole("");
           setCompany("");
           setStartDate("");
           setEndDate("");
           setDescription("");
-          setArea("")
+          setArea("");
         } else {
-          alert("oh oh")
+
+          toast.error("oh oh riprova!")
         }
       })
   }
@@ -79,9 +83,6 @@ function AddExperience({ userId, expId }) {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
 
       <Modal show={show} onHide={handleClose} size="lg" >
         <Modal.Header closeButton>
@@ -107,10 +108,10 @@ function AddExperience({ userId, expId }) {
                 setCompany(e.target.value);
               }} />
             </Form.Group>
-            <Form.Group className="mb-3 AddExpLabel" controlId="description">
-              <Form.Label className='m-0 ' >Descrizione</Form.Label >
-              <Form.Control as="textarea" required value={description} onChange={(e) => {
-                setDescription(e.target.value);
+            <Form.Group className="mb-3 AddExpLabel" controlId="area">
+              <Form.Label className='m-0 '>Località</Form.Label>
+              <Form.Control type="text" placeholder="Esempio: Italia, Lombardia, Milano" required value={area} onChange={(e) => {
+                setArea(e.target.value);
               }} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="checkRole">
@@ -126,30 +127,12 @@ function AddExperience({ userId, expId }) {
               <Form.Label className='m-0 '>Fine:</Form.Label>
               <input type="date" className='d-block' disabled={checked} value={checked ? "" : endDate} onChange={(e) => { setEndDate(e.target.value); }} />
             </Form.Group>
-
-            <Form.Group className="mb-3 AddExpLabel" controlId="area">
-              <Form.Label className='m-0 '>Località</Form.Label>
-              <Form.Control type="text" placeholder="Esempio: Italia, Lombardia, Milano" required value={area} onChange={(e) => {
-                setArea(e.target.value);
+            <Form.Group className="mb-3 AddExpLabel" controlId="description">
+              <Form.Label className='m-0 ' >Descrizione</Form.Label >
+              <Form.Control as="textarea" required value={description} onChange={(e) => {
+                setDescription(e.target.value);
               }} />
             </Form.Group>
-            <Form.Group>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
-            </Form.Group>
-            <Form.Group>
-              <Form.Select aria-label="Default select example">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
-            </Form.Group>
-
             <Button className='rounded-pill btn-blue' type="submit">
               Salva
             </Button>
