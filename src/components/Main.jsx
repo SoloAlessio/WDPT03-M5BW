@@ -2,6 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useCallback, useEffect, useState } from "react";
 import Jumbotron from "./Jumbotron/Index.jsx";
 import Experiences from "./Experiences/WorkArea.jsx";
+
 export default function Main() {
   const [myProfile, setMyProfile] = useState({});
   const [myId, setMyId] = useState("")
@@ -18,20 +19,17 @@ export default function Main() {
 
   useEffect(() => {
     getMyProfile();
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   }, [getMyProfile]);
 
-
- 
-
-    return (
-        <Container className="mt-4">
-            <Row>
-                <Col xs={8}>
-                    <Jumbotron myProfile={myProfile} getMyProfile={getMyProfile} myId={myId}/>
-                    <Experiences userId={myProfile["_id"]}/>
-                </Col>
-            </Row>
-        </Container>
-    )
+  return (
+    <Container className="mt-4">
+      <Row>
+        <Col xs={8}>
+          <Jumbotron myProfile={myProfile} getMyProfile={getMyProfile} myId={myId} />
+          {myProfile && <Experiences userId={myProfile._id} />}
+        </Col>
+      </Row>
+    </Container>
+  );
 }
