@@ -1,113 +1,110 @@
-$btn-color: #0A66C2;
+$btn-color: #0a66c2;
 $hoverbtn-color: #084e94;
 @mixin flex-center() {
-    display: flex ;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .colorBlu {
-    color: $btn-color;
-    cursor: pointer;
-    &:hover {
-        text-decoration: underline;
-    }    
+  color: $btn-color;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
-
 .jumbotronBackground {
-    position: relative;
-    height: 200px;
-    padding: 0;
-    .jumbotron_camera {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        height: 35px;
-        width: 35px;
-        border-radius: 20px;
-        @include flex-center;
-        background-color: white;
-        cursor: pointer;
-        svg {
-            color: $btn-color;
-            font-size: 15px;
-            &:hover {
-                color: $hoverbtn-color;
-            }
-        }
-        
+  position: relative;
+  height: 200px;
+  padding: 0;
+  .jumbotron_camera {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 35px;
+    width: 35px;
+    border-radius: 20px;
+    @include flex-center;
+    background-color: white;
+    cursor: pointer;
+    svg {
+      color: $btn-color;
+      font-size: 15px;
+      &:hover {
+        color: $hoverbtn-color;
+      }
     }
+  }
 }
 
 .jumbotronProfile {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-top: -124px;
-    position: relative;
-    img {
-        width: 170px;
-        aspect-ratio: 1/1;
-        object-fit: cover;
-        background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: -124px;
+  position: relative;
+  img {
+    width: 170px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    background-color: #fff;
+  }
+  button {
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    @include flex-center;
+    margin-bottom: -20px;
+    background-color: white;
+    border: 0;
+    svg {
+      font-size: 20px;
     }
-    button {
-        padding: 0;
-        width: 40px;
-        height: 40px;
-        @include flex-center;
-        margin-bottom: -20px;
-        background-color: white;
-       border: 0;
-        svg {
-            font-size: 20px;
-        }
-    }
+  }
 }
 
 .ms-20 {
-    margin-left: 20%;
+  margin-left: 20%;
 }
 
 .fs-7 {
-    
-    font-size: 0.9em;
+  font-size: 0.9em;
 }
 
 .btn-blue {
-        background-color: $btn-color;
-        border: 1px solid $btn-color;
-        padding-block: 3px;
-        color: white;
-        cursor: pointer;
-        &:hover {
-            background-color: $hoverbtn-color;
-            border-color: $hoverbtn-color;
-        }
+  background-color: $btn-color;
+  border: 1px solid $btn-color;
+  padding-block: 3px;
+  color: white;
+  cursor: pointer;
+  &:hover {
+    background-color: $hoverbtn-color;
+    border-color: $hoverbtn-color;
+  }
 }
 
 .btn-white {
-        background-color: white;
-        border: 1px solid $btn-color;
-        color: $btn-color;
-        cursor: pointer;
-        padding-block: 3px;
-        &:hover {
-            background-color: rgba(112, 181, 249, 0.2);
-            color: $btn-color;
-        }
+  background-color: white;
+  border: 1px solid $btn-color;
+  color: $btn-color;
+  cursor: pointer;
+  padding-block: 3px;
+  &:hover {
+    background-color: rgba(112, 181, 249, 0.2);
+    color: $btn-color;
+  }
 }
 
 .btn-grey {
-        background-color: white;
-        border: 1px solid rgba(0, 0, 0, 0.6);
-        color: rgba(0, 0, 0, 0.6);
-        cursor: pointer;
-        padding-block: 3px;
-        &:hover {
-            background-color: rgba(0, 0, 0, 0.08);
-            color: black;
-            border-color: black;
-        }
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  padding-block: 3px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    color: black;
+    border-color: black;
+  }
 }
