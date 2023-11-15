@@ -190,6 +190,7 @@ function AddExperience({ userId, show, setShow, expId }) {
                 as="textarea"
                 placeholder="Leempio:ve a comment here"
                 style={{ height: "100px" }}
+                value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
             </FloatingLabel>

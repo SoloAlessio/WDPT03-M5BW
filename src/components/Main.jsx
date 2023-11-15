@@ -4,7 +4,7 @@ import Jumbotron from "./Jumbotron/Index.jsx";
 import Experiences from "./Experiences/WorkArea.jsx";
 
 export default function Main() {
-  const [myProfile, setMyProfile] = useState({});
+  const [myProfile, setMyProfile] = useState("");
   const [myId, setMyId] = useState("")
 
   const getMyProfile = useCallback(() => {
