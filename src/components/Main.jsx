@@ -28,7 +28,7 @@ export default function Main() {
             <Row>
                 <Col xs={8}>
                     <Jumbotron myProfile={myProfile}/>
-                    <AddExperience/>
+                    <AddExperience userId={myProfile.userId}/>
                 </Col>
             </Row>
         </Container>

@@ -1,14 +1,13 @@
 $LightGrey: #919191;
 
-.ModalExp {
-    width: 90%;
-    max-width: 90%;
-}
 .AddExpLabel {
     color: $LightGrey;
 
     input::placeholder {
         color: $LightGrey;
+    }
+    input[type="text" i], textarea{
+        border-color: black;
     }
 }
 

@@ -1,16 +1,75 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {Button, Modal, Form} from 'react-bootstrap';
 import "./AddExperience.scss"
 
-function Example() {
+function AddExperience({userId, expId}) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [checked, setChecked] = useState(false);
+  const [role, setRole] = useState("")
+  const [company, setCompany] = useState("")
+  const [startDate, setStartDate] = useState("")
+  const [endDate, setEndDate] = useState("")
+  const [description, setDescription] = useState("")
+  const [area, setArea] = useState("")
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
   }
+
+  useEffect(() => {
+    if(expId){
+      fetch(`https://striveschool-api.herokuapp.com/api/profile/:${userId}/experiences/:${expId}`, {
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`
+        }
+        .then((r) => r.json())
+        .then(experience => {
+          setRole(experience.role);
+          setCompany(experience.company);
+          setStartDate(experience.startDate);
+          setEndDate(experience.endDate);
+          setDescription(experience.description);
+          setArea(experience.area)
+        })
+      })
+    }
+  }, [expId, userId]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let form = {
+      role: role,
+      company: company,
+      startDate: startDate,
+      endDate: checked ? null : endDate,
+      description: description,
+      area: area
+    }
+
+    const url = expId ? `https://striveschool-api.herokuapp.com/api/profile/:${userId}/experiences/:${expId}` : `https://striveschool-api.herokuapp.com/api/profile/:${userId}/experiences`
+    const method = expId ? "PUT" : "POST"
+
+    fetch(url ,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+        "Content-Type": "application/json"
+      },
+      method: method,
+      body: JSON.stringify(form)
+    })
+    .then((r) => {
+      if(r.ok){
+        expId ? alert("modificato") : alert("salvato")
+      }else{
+        alert("oh oh")
+      }
+    })
+  }
+
 
   return (
     <>
@@ -18,7 +77,7 @@ function Example() {
         Launch demo modal
       </Button>
 
-      <Modal show={show} onHide={handleClose} className='ModalExp'>
+      <Modal show={show} onHide={handleClose} size="lg" >
         <Modal.Header closeButton>
           <Modal.Title>Aggiungi Esperienza</Modal.Title>
         </Modal.Header>
@@ -29,49 +88,55 @@ function Example() {
               Scopri di più sulla <span className='colorBlu fw-semibold'>condivisione delle modifiche del profilo</span>.</p>
           </div>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3 AddExpLabel" controlId="formBasicEmail">
               <Form.Label className='m-0 '>Qualifica</Form.Label>
-              <Form.Control type="text" placeholder="Esempio: CTO" />
+              <Form.Control type="text" placeholder="Esempio: CTO" required value={role} onChange={(e) => {
+                setRole(e.target.value);
+              }} />
             </Form.Group>
             <Form.Group className="mb-3 AddExpLabel" controlId="formBasicEmail">
               <Form.Label className='m-0 '>Nome Azienda</Form.Label>
-              <Form.Control type="text" placeholder="Esempio: EPICODE" />
+              <Form.Control type="text" placeholder="Esempio: EPICODE" required value={company} onChange={(e) => {
+                setCompany(e.target.value);
+              }}  />
             </Form.Group>
             <Form.Group className="mb-3 AddExpLabel" controlId="formBasicEmail">
-              <Form.Label className='m-0 '>Descrizione</Form.Label>
-              <Form.Control as="textarea"  />
+              <Form.Label className='m-0 ' >Descrizione</Form.Label >
+              <Form.Control as="textarea" required value={description}  onChange={(e) => {
+                setDescription(e.target.value);
+              }} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Attualmente ricopro questo ruolo" onChange={handleChange} />
             </Form.Group>
             <Form.Group className="mb-3 AddExpLabel" controlId="formBasicEmail">
               <Form.Label className='m-0 '>Inizio:</Form.Label>
-              <input type="date" className='d-block'/>
+              <input type="date" className='d-block' required value={startDate} onChange={(e) => {
+                setStartDate(e.target.value);
+              }}  />
             </Form.Group>
             <Form.Group className="mb-3 AddExpLabel" controlId="formBasicEmail">
               <Form.Label className='m-0 '>Fine:</Form.Label>
-              <input type="date" className='d-block' disabled={checked}/>
+              <input type="date" className='d-block' disabled={checked} value={checked ? "" : endDate} onChange={(e) => {setEndDate(e.target.value);}}  /> 
             </Form.Group>
             
             <Form.Group className="mb-3 AddExpLabel" controlId="formBasicEmail">
               <Form.Label className='m-0 '>Località</Form.Label>
-              <Form.Control type="text" placeholder="Esempio: Italia, Lombardia, Milano" />
+              <Form.Control type="text" placeholder="Esempio: Italia, Lombardia, Milano" required value={area} onChange={(e) => {
+                setArea(e.target.value);
+              }}  />
             </Form.Group>
-            
-            <Button className='btn-blue' type="submit">
-              Submit
-            </Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
+        <Button className='rounded-pill btn-blue' type="submit">
+              Salva
+        </Button>
         </Modal.Footer>
       </Modal>
     </>
   );
 }
 
-export default Example;
+export default AddExperience;
