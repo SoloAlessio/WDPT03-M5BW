@@ -2,6 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useCallback, useEffect, useState } from "react";
 import Jumbotron from "./Jumbotron/Index.jsx";
 import Experiences from "./Experiences/WorkArea.jsx";
+import AddExperience from "./AddExperience/Index.jsx"
 export default function Main() {
   const [myProfile, setMyProfile] = useState({});
 
