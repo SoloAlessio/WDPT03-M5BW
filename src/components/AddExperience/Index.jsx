@@ -181,6 +181,7 @@ function AddExperience({ userId, show, setShow, expId }) {
                 placeholder="Leempio:ve a comment here"
                 style={{ height: "100px" }}
                 value={form.description}
+                required
                 onChange={(e) =>
                   setForm({ ...form, description: e.target.value })
                 }

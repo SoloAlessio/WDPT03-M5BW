@@ -13,10 +13,7 @@ function ModifyImg({ myProfile, getMyProfile, show, setShow }) {
   const handleClose = () => setShow(false);
   const [fd, setFd] = useState(new FormData());
   const [loading, setLoading] = useState(false)
- 
 
-
-  
   const handleFile = (ev) => {
     setFd((prev) => {
       prev.delete("profile");
@@ -31,10 +28,7 @@ function ModifyImg({ myProfile, getMyProfile, show, setShow }) {
         method: "POST",
         body: fd,
         headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}
-
-
-`,
+          Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
         },
       }
     ).then((response) => {

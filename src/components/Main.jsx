@@ -10,10 +10,7 @@ export default function Main() {
   const getMyProfile = useCallback(() => {
     fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}
-
-
-`,
+        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
       },
     })
       .then((r) => r.json())
