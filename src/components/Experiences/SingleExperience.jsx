@@ -44,7 +44,12 @@ const DateDifference = (a, b) => {
   return result.length > 0 ? result : "Le date sono uguali";
 };
 
-export default function SingleExperience({ Experience, userId, myId }) {
+export default function SingleExperience({
+  getExperiences,
+  Experience,
+  userId,
+  myId,
+}) {
   const [show, setShow] = useState(false);
   const dataInizio = new Date(Experience.startDate);
   const dataFine =
@@ -67,6 +72,7 @@ export default function SingleExperience({ Experience, userId, myId }) {
 
       if (response.ok) {
         toast.success("Esperienza eliminata con successo!");
+        getExperiences();
       } else {
         toast.error("Errore: " + response.statusText);
       }

@@ -1,6 +1,6 @@
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { PlusLg } from "react-bootstrap-icons";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "./experiences.scss";
 import AddExperience from "../AddExperience/Index";
 import SingleExperience from "./SingleExperience";
@@ -9,7 +9,7 @@ export default function Experiences({ userId, myId }) {
   const [show, setShow] = useState(false);
   const [exp, setExp] = useState([]);
 
-  useEffect(() => {
+  const getExperiences = useCallback(() => {
     fetch(
       `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences`,
       {
@@ -22,6 +22,10 @@ export default function Experiences({ userId, myId }) {
       .then(setExp);
   }, [userId]);
 
+  useEffect(() => {
+    getExperiences();
+  }, [getExperiences]);
+
   return (
     <Container fluid className="bg-white border rounded-3 p-4 mt-2 experiences">
       <Row className="experience-header mb-5">
@@ -29,7 +33,12 @@ export default function Experiences({ userId, myId }) {
           <h4>Esperienze</h4>
           {userId === myId && (
             <>
-              <AddExperience userId={userId} show={show} setShow={setShow} />
+              <AddExperience
+                getExperiences={getExperiences}
+                userId={userId}
+                show={show}
+                setShow={setShow}
+              />
               <Button
                 variant="light"
                 className="rounded-circle ms-auto"
@@ -45,7 +54,12 @@ export default function Experiences({ userId, myId }) {
       <Row className="mt-3">
         {exp.map((e) => (
           <Col xs={12} className="mb-4" key={e._id}>
-            <SingleExperience Experience={e} userId={userId} myId={myId} />
+            <SingleExperience
+              getExperiences={getExperiences}
+              Experience={e}
+              userId={userId}
+              myId={myId}
+            />
           </Col>
         ))}
       </Row>

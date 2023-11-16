@@ -3,7 +3,7 @@ import { Button, Modal, FloatingLabel, Form, Row, Col } from "react-bootstrap";
 import "./AddExperience.scss";
 import { toast } from "react-toastify";
 
-function AddExperience({ userId, show, setShow, expId }) {
+function AddExperience({ userId, show, setShow, expId, getExperiences }) {
   const handleClose = () => setShow(false);
   const url = expId
     ? `https://striveschool-api.herokuapp.com/api/profile/:${userId}/experiences/:${expId}`
@@ -66,6 +66,8 @@ function AddExperience({ userId, show, setShow, expId }) {
           description: "",
           area: "",
         });
+        handleClose();
+        getExperiences();
       } else {
         toast.error("oh oh riprova!");
       }
