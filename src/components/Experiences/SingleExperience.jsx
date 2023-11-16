@@ -78,7 +78,7 @@ export default function SingleExperience({ Experience, userId }) {
 
   return (
     <Row>
-      <Col className="d-flex gap-4 mb-4 mb-md-0" md={8}>
+      <Col className="d-flex mb-4 mb-md-0" md={10}>
         <div>
           <img
             src="https://picsum.photos/48/48"
@@ -86,13 +86,12 @@ export default function SingleExperience({ Experience, userId }) {
             alt="experience-cover"
           />
         </div>
-        <div className="details">
+        <div className="details ps-3">
           <h6>{Experience.role}</h6>
           <p>
             {Experience.company}
-            <span> tipo di impiego (a tempo pieno/part time)</span>
+            <span> · a tempo pieno</span>
           </p>
-          <p>{Experience.area}</p>
           <p className="text-body-secondary">
             {dataInizio.toLocaleDateString()} - {dataFine.toLocaleDateString()}{" "}
             · {DateDifference(dataFine, dataInizio)}
@@ -102,7 +101,7 @@ export default function SingleExperience({ Experience, userId }) {
           <p>{Experience.description}</p>
         </div>
       </Col>
-      <Col className="text-end" md={4}>
+      <Col className="text-end" md={2}>
         <Button
           variant="light"
           className="me-2"
