@@ -22,11 +22,10 @@ export default function ProfileDetail() {
     getMyProfile();
   }, [getMyProfile]);
 
-
   return (
     <Container className="mt-4">
       <Row>
-        <Col xs={8}>
+        <Col md={8}>
           <Jumbotron myProfile={myProfile} />
           <Experiences userId={id} />
         </Col>

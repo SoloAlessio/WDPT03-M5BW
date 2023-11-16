@@ -44,7 +44,7 @@ const DateDifference = (a, b) => {
   return result.length > 0 ? result : "Le date sono uguali";
 };
 
-export default function SingleExperience({ Experience, userId }) {
+export default function SingleExperience({ Experience, userId, myId }) {
   const [show, setShow] = useState(false);
   const dataInizio = new Date(Experience.startDate);
   const dataFine =
@@ -102,24 +102,26 @@ export default function SingleExperience({ Experience, userId }) {
           <p>{Experience.description}</p>
         </div>
       </Col>
-      <Col className="text-end" md={4}>
-        <Button
-          variant="light"
-          className="me-2"
-          onClick={() => handleDelete(Experience._id, userId)}
-        >
-          <Icon.Trash />
-        </Button>
-        <AddExperience
-          userId={userId}
-          show={show}
-          setShow={setShow}
-          expId={Experience._id}
-        />
-        <Button variant="light" onClick={() => setShow(true)}>
-          <Icon.PencilFill />
-        </Button>
-      </Col>
+      {userId === myId && (
+        <Col className="text-end" md={4}>
+          <Button
+            variant="light"
+            className="me-2"
+            onClick={() => handleDelete(Experience._id, userId)}
+          >
+            <Icon.Trash />
+          </Button>
+          <AddExperience
+            userId={userId}
+            show={show}
+            setShow={setShow}
+            expId={Experience._id}
+          />
+          <Button variant="light" onClick={() => setShow(true)}>
+            <Icon.PencilFill />
+          </Button>
+        </Col>
+      )}
     </Row>
   );
 }

@@ -33,8 +33,9 @@ export default function Main() {
             myProfile={myProfile}
             getMyProfile={getMyProfile}
             myId={myId}
+            userId={myProfile._id}
           />
-          {myProfile && <Experiences userId={myProfile._id} />}
+          {myProfile && <Experiences userId={myProfile._id} myId={myId} />}
         </Col>
       </Row>
     </Container>

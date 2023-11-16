@@ -3,8 +3,9 @@ import { Pencil, CameraFill } from "react-bootstrap-icons";
 import "./jumbotron.scss";
 import { useState } from "react";
 import ModifyImg from "./ModifyImg.jsx";
+import * as Icon from "react-bootstrap-icons";
 
-export default function Jumbotron({ myProfile, getMyProfile, myId }) {
+export default function Jumbotron({ myProfile, getMyProfile, myId, userId }) {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -30,8 +31,9 @@ export default function Jumbotron({ myProfile, getMyProfile, myId }) {
         </Col>
       </Row>
       <Row className="mx-1">
-        <Col xs={12} className="jumbotronProfile">
+        <Col md={12} className="jumbotronProfile">
           <div
+            className="position-relative profile"
             onClick={myId === myProfile["_id"] ? handleShow : handleClose}
             style={
               myId === myProfile["_id"]
@@ -40,13 +42,18 @@ export default function Jumbotron({ myProfile, getMyProfile, myId }) {
             }
           >
             <img src={myProfile["image"]} className="rounded-circle" alt="" />
+            {userId === myId && (
+              <div className="icon">
+                <Icon.CameraFill className="position-absolute top-50 start-50 translate-middle fs-3 text-white" />
+              </div>
+            )}
           </div>
           <Button variant="light" className="rounded-circle">
             <Pencil />
           </Button>
         </Col>
         <Col
-          xs={12}
+          md={12}
           className="mt-4 d-flex justify-content-between align-items-center"
         >
           <h3 style={{ marginBottom: 0 }}>
