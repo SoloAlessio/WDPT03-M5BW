@@ -64,7 +64,7 @@ export default function NavBar() {
             <Form.Control
               placeholder="Cerca"
               aria-label="Cerca"
-              aria-describedby="basic-addon1"
+              id="searchBar"
               className="border-start-0"
               onInput={(e) => {
                 setSearchQuery(e.target.value);

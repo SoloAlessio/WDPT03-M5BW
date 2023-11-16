@@ -88,11 +88,7 @@ export default function SingleExperience({ Experience, userId, myId }) {
         </div>
         <div className="details">
           <h6>{Experience.role}</h6>
-          <p>
-            {Experience.company}
-            <span> tipo di impiego (a tempo pieno/part time)</span>
-          </p>
-          <p>{Experience.area}</p>
+          <p>{Experience.company}</p>
           <p className="text-body-secondary">
             {dataInizio.toLocaleDateString()} - {dataFine.toLocaleDateString()}{" "}
             · {DateDifference(dataFine, dataInizio)}

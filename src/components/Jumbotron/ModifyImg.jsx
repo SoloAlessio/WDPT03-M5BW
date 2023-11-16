@@ -43,7 +43,7 @@ function ModifyImg({ myProfile, getMyProfile, show, setShow }) {
           <img
             src={myProfile["image"]}
             className="rounded-circle object-fit-cover"
-            alt=""
+            alt="ProPic"
           />
         </Modal.Body>
         <Modal.Footer className="justify-content-start">

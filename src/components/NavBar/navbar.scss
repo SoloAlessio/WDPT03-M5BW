@@ -6,10 +6,15 @@
         color: #0a66c2;
     }
     Form{
-        .input-group > *{
-            background-color: #EDF3F8;
-            border-radius: 0.4rem;
-            border: 0;
+        .input-group{
+            :focus{
+                box-shadow: none!important;
+            }
+            *{
+                background-color: #EDF3F8;
+                border-radius: 0.4rem;
+                border: 0;
+            }
         }
 
         #profile-search-area{
