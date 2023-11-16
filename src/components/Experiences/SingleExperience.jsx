@@ -44,7 +44,12 @@ const DateDifference = (a, b) => {
   return result.length > 0 ? result : "Le date sono uguali";
 };
 
-export default function SingleExperience({ Experience, userId, myId }) {
+export default function SingleExperience({
+  getExperiences,
+  Experience,
+  userId,
+  myId,
+}) {
   const [show, setShow] = useState(false);
   const dataInizio = new Date(Experience.startDate);
   const dataFine =
@@ -67,6 +72,7 @@ export default function SingleExperience({ Experience, userId, myId }) {
 
       if (response.ok) {
         toast.success("Esperienza eliminata con successo!");
+        getExperiences();
       } else {
         toast.error("Errore: " + response.statusText);
       }
@@ -78,7 +84,7 @@ export default function SingleExperience({ Experience, userId, myId }) {
 
   return (
     <Row>
-      <Col className="d-flex gap-4 mb-4 mb-md-0" md={8}>
+      <Col className="d-flex mb-4" md={9}>
         <div>
           <img
             src="https://picsum.photos/48/48"
@@ -86,9 +92,12 @@ export default function SingleExperience({ Experience, userId, myId }) {
             alt="experience-cover"
           />
         </div>
-        <div className="details">
+        <div className="details ps-3">
           <h6>{Experience.role}</h6>
-          <p>{Experience.company}</p>
+          <p>
+            {Experience.company}
+            <span> · a tempo pieno</span>
+          </p>
           <p className="text-body-secondary">
             {dataInizio.toLocaleDateString()} - {dataFine.toLocaleDateString()}{" "}
             · {DateDifference(dataFine, dataInizio)}
@@ -99,7 +108,7 @@ export default function SingleExperience({ Experience, userId, myId }) {
         </div>
       </Col>
       {userId === myId && (
-        <Col className="text-end" md={4}>
+        <Col className="text-end" md={3}>
           <Button
             variant="light"
             className="me-2"

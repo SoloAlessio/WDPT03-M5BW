@@ -5,6 +5,9 @@ import {
   Form,
   Container,
   InputGroup,
+  Button,
+  Row,
+  Col,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
@@ -163,14 +166,59 @@ export default function NavBar() {
               align="start"
             >
               <Icon.PersonCircle width="1.5rem" height="1.5rem" />
-              <NavDropdown title="Tu" id="navbarScrollingDropdown">
-                <Link to={`/wip`} className="dropdown-item ">
-                  Home
+              <NavDropdown
+                align={{ sm: "end" }}
+                title="Tu"
+                id="dropdown-menu-align-responsive-1"
+                className="nav-dropdown-no-decoration"
+              >
+                <Link to={`/wip`} className="dropdown-item">
+                  <Row className="d-flex">
+                    <Col xs={2}>
+                      <img
+                        width="50rem"
+                        height="50rem"
+                        src="https://picsum.photos/48/48"
+                        className="rounded-circle"
+                        alt="experience-cover"
+                      />
+                    </Col>
+                    <Col xs={9} className="ms-2 mb-2">
+                      <h5>nome</h5>
+                      <l>esperienza/ruolo</l>
+                    </Col>
+                    <Button className="rounded-pill fw-semibold btn-white">
+                      Visualizza profilo
+                    </Button>
+                  </Row>
                 </Link>
-                <NavDropdown.Item href="/wip">Another action</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="/wip" className="">
+                  <h5>Account</h5>
+                  <div>
+                    <Button variant="warning" className="p-2 me-2"></Button>
+                    <a className="decoration-none" href="/wip">
+                      Riattiva Premium
+                    </a>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <a href="/wip">Impostazioni e privacy</a>
+                    <a href="/wip">Guida</a>
+                    <a href="/wip">Lingua</a>
+                  </div>
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="/wip" className="d-flex flex-column">
+                  <h5>Gestisci</h5>
+                  <a href="/wip">Post e attività</a>
+                  <a href="/wip" className="text-truncate">
+                    Account per la pubblicazione di offerte e{" "}
+                  </a>
+                  <a href="/wip">Lingua</a>
+                </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/wip">
-                  Something else here
+                  <a href="/wip">Esci</a>
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav.Item>
