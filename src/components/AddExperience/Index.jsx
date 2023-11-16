@@ -129,7 +129,7 @@ function AddExperience({ userId, show, setShow, expId }) {
                   required
                   type="text"
                   className="border rounded"
-                  value={Form.area}
+                  value={form.area}
                   placeholder="Esempio: Milano, Roma"
                   onChange={(e) => {
                     setForm({ ...form, area: e.target.value });
@@ -144,7 +144,7 @@ function AddExperience({ userId, show, setShow, expId }) {
                   type="date"
                   className="d-block w-50 mb-2 p-2 rounded border"
                   required
-                  value={Form.startDate}
+                  value={form.startDate}
                   id="startDate"
                   onChange={(e) => {
                     setForm({ ...form, startDate: e.target.value });
@@ -180,7 +180,7 @@ function AddExperience({ userId, show, setShow, expId }) {
                 as="textarea"
                 placeholder="Leempio:ve a comment here"
                 style={{ height: "100px" }}
-                value={Form.description}
+                value={form.description}
                 onChange={(e) =>
                   setForm({ ...form, description: e.target.value })
                 }

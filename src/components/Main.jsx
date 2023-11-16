@@ -10,7 +10,10 @@ export default function Main() {
   const getMyProfile = useCallback(() => {
     fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}
+
+
+`,
       },
     })
       .then((r) => r.json())
@@ -34,7 +37,7 @@ export default function Main() {
             getMyProfile={getMyProfile}
             myId={myId}
           />
-          {myProfile && <Experiences userId={myProfile._id} />}
+          {myProfile && <Experiences userId={myProfile._id} myId={myId} />}
         </Col>
       </Row>
     </Container>
