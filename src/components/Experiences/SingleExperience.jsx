@@ -101,24 +101,26 @@ export default function SingleExperience({ Experience, userId, myId }) {
           <p>{Experience.description}</p>
         </div>
       </Col>
-      <Col className="text-end" md={2}>
-        <Button
-          variant="light"
-          className="me-2"
-          onClick={() => handleDelete(Experience._id, userId)}
-        >
-          <Icon.Trash />
-        </Button>
-        <AddExperience
-          userId={userId}
-          show={show}
-          setShow={setShow}
-          expId={Experience._id}
-        />
-        <Button variant="light" onClick={() => setShow(true)}>
-          <Icon.PencilFill />
-        </Button>
-      </Col>
+      {userId === myId && (
+        <Col className="text-end" md={4}>
+          <Button
+            variant="light"
+            className="me-2"
+            onClick={() => handleDelete(Experience._id, userId)}
+          >
+            <Icon.Trash />
+          </Button>
+          <AddExperience
+            userId={userId}
+            show={show}
+            setShow={setShow}
+            expId={Experience._id}
+          />
+          <Button variant="light" onClick={() => setShow(true)}>
+            <Icon.PencilFill />
+          </Button>
+        </Col>
+      )}
     </Row>
   );
 }
