@@ -40,7 +40,11 @@ function ModifyImg({ myProfile, getMyProfile, show, setShow }) {
         </Modal.Header>
 
         <Modal.Body className="m-auto">
-          <img src={myProfile["image"]} className="rounded-circle" alt="" />
+          <img
+            src={myProfile["image"]}
+            className="rounded-circle object-fit-cover"
+            alt=""
+          />
         </Modal.Body>
         <Modal.Footer className="justify-content-start">
           <label className="custom-file-upload">
