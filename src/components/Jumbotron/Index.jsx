@@ -52,7 +52,7 @@ export default function Jumbotron({ myProfile, getMyProfile, myId }) {
             <Pencil />
           </Button>
         </Col>
-        <Col xs={12} className="mt-4 mt-md-0">
+        <Col xs={12} className="mt-4">
           <h3 style={{ marginBottom: 0 }}>
             {myProfile["name"]} {myProfile["surname"]}
           </h3>

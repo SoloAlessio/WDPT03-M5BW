@@ -38,7 +38,7 @@ export default function Main() {
   return (
     <Container className="mt-4">
       <Row>
-        <Col md={8}>
+        <Col lg={8}>
           <Jumbotron
             myProfile={myProfile}
             getMyProfile={getMyProfile}
@@ -46,8 +46,11 @@ export default function Main() {
           />
           {myProfile && <Experiences userId={myProfile._id} myId={myId} />}
         </Col>
-        <Col md={3}>
-          <Container className="bg-white container-fluid border rounded-3 p-3 h-100">
+        <Col lg={4}>
+          <Container
+            className="bg-white container-fluid border rounded-3 p-3 mt-2 mt-lg-0"
+            style={{ position: "sticky", top: "92px" }}
+          >
             <p className="fw-semibold mb-0">Persone che potresti conoscere</p>
             <p className="text-secondary">Dalla tua scuola o università</p>
             <Container fluid>

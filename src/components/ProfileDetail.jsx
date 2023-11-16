@@ -34,6 +34,7 @@ export default function ProfileDetail() {
   useEffect(() => {
     getMyProfile();
     getMyPersonalProfile();
+    window.scroll(0, 0);
   }, [getMyProfile, getMyPersonalProfile]);
 
   return (
