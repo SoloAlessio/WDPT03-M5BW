@@ -7,6 +7,7 @@ import Experiences from "./Experiences/WorkArea";
 export default function ProfileDetail() {
   const [myProfile, setMyProfile] = useState({});
   const { id } = useParams();
+  const [myId, setMyId] = useState("");
 
   const getMyProfile = useCallback(() => {
     fetch(`https://striveschool-api.herokuapp.com/api/profile/${id}`, {
@@ -18,15 +19,28 @@ export default function ProfileDetail() {
       .then(setMyProfile);
   }, [id]);
 
+  const getMyPersonalProfile = useCallback(() => {
+    fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+      },
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        setMyId(data["_id"]);
+      });
+  }, []);
+
   useEffect(() => {
     getMyProfile();
-  }, [getMyProfile]);
+    getMyPersonalProfile();
+  }, [getMyProfile, getMyPersonalProfile]);
 
   return (
     <Container className="mt-4">
       <Row>
         <Col md={8}>
-          <Jumbotron myProfile={myProfile} />
+          <Jumbotron myProfile={myProfile} myId={myId} />
           <Experiences userId={id} />
         </Col>
       </Row>
