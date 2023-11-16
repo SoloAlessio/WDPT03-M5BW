@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { CameraFill } from "react-bootstrap-icons";
+import { toast } from "react-toastify";
 
 function ModifyImg({ myProfile, getMyProfile, show, setShow }) {
   const handleClose = () => setShow(false);
