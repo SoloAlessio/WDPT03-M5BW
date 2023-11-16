@@ -5,7 +5,7 @@ import { useState } from "react";
 import ModifyImg from "./ModifyImg.jsx";
 import * as Icon from "react-bootstrap-icons";
 
-export default function Jumbotron({ myProfile, getMyProfile, myId, userId }) {
+export default function Jumbotron({ myProfile, getMyProfile, myId }) {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -42,7 +42,7 @@ export default function Jumbotron({ myProfile, getMyProfile, myId, userId }) {
             }
           >
             <img src={myProfile["image"]} className="rounded-circle" alt="" />
-            {userId === myId && (
+            {myProfile["_id"] === myId && (
               <div className="icon">
                 <Icon.CameraFill className="position-absolute top-50 start-50 translate-middle fs-3 text-white" />
               </div>
