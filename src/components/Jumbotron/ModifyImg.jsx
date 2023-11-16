@@ -25,9 +25,9 @@ function ModifyImg({ myProfile, getMyProfile, show, setShow }) {
     ).then((response) => {
       if (response.ok) {
         getMyProfile();
-        alert("Salvato!");
+        toast.success("Immagine cambiata con successo!");
       } else {
-        alert("oh oh");
+        toast.error("oh oh riprova!");
       }
     });
   };
@@ -46,7 +46,7 @@ function ModifyImg({ myProfile, getMyProfile, show, setShow }) {
             <input type="file" onChange={handleFile} />
             <div className="d-flex flex-column align-items-center">
               <CameraFill size={20} />
-              <p className="fw-medium m-0">Aggiungi Foto</p>
+              <p className="fw-medium m-0">Cambia Foto</p>
             </div>
           </label>
         </Modal.Footer>
