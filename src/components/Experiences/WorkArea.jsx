@@ -49,7 +49,6 @@ export default function Experiences({ userId, myId }) {
           </Col>
         ))}
       </Row>
-      <AddExperience userId={userId} show={show} setShow={setShow} />
     </Container>
   );
 }

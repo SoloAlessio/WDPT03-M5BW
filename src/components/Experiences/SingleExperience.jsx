@@ -78,7 +78,7 @@ export default function SingleExperience({ Experience, userId, myId }) {
 
   return (
     <Row>
-      <Col className="d-flex mb-4 mb-md-0" md={10}>
+      <Col className="d-flex mb-4" md={9}>
         <div>
           <img
             src="https://picsum.photos/48/48"
@@ -102,7 +102,7 @@ export default function SingleExperience({ Experience, userId, myId }) {
         </div>
       </Col>
       {userId === myId && (
-        <Col className="text-end" md={4}>
+        <Col className="text-end" md={3}>
           <Button
             variant="light"
             className="me-2"
