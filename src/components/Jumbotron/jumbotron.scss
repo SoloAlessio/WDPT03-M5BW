@@ -18,7 +18,7 @@ $hoverbtn-color: #084e94;
   position: relative;
   height: 200px;
   padding: 0;
-  >img {
+  > img {
     object-fit: cover;
     width: 100%;
   }
@@ -55,6 +55,7 @@ $hoverbtn-color: #084e94;
     background-color: #fff;
   }
   button {
+    color: #00000099;
     padding: 0;
     width: 40px;
     height: 40px;
@@ -114,20 +115,19 @@ $hoverbtn-color: #084e94;
 }
 .Modal-imgProfile {
   .modal-content {
-    background-color: #1B1F23;
+    background-color: #1b1f23;
     color: white;
   }
   input[type="file"] {
     display: none;
-}
-.custom-file-upload {
-  
-  display: inline-block;
-  
-  cursor: pointer;
-}
-img {
-  width: 250px;
-  height: 250px;
-}
+  }
+  .custom-file-upload {
+    display: inline-block;
+
+    cursor: pointer;
+  }
+  img {
+    width: 250px;
+    height: 250px;
+  }
 }

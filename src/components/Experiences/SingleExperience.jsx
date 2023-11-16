@@ -74,17 +74,16 @@ export default function SingleExperience({ profile, userId }) {
   };
 
   return (
-    <Row>
-      <Col className="d-flex gap-4">
-        <div>
+    <>
+      <Row className="d-flex">
+        <Col xs={1}>
           <img
             src="https://picsum.photos/48/48"
-            style={{ width: "48px", height: "48px", backgroundColor: "grey" }}
             className="rounded-circle"
             alt="experience-cover"
           />
-        </div>
-        <div className="details">
+        </Col>
+        <Col xs={9} className="details">
           <h6>{profile.role}</h6>
           <p>
             {profile.company}
@@ -98,16 +97,16 @@ export default function SingleExperience({ profile, userId }) {
           <p className="text-body-secondary">{profile.area}</p>
           <br />
           <p>{profile.description}</p>
-        </div>
-      </Col>
-      <Col className="text-end">
-        <Button
-          variant="outline-danger"
-          onClick={() => handleDelete(profile._id, userId)}
-        >
-          <Icon.Trash />
-        </Button>
-      </Col>
-    </Row>
+        </Col>
+        <Col xs={2} className="text-end">
+          <Button
+            variant="outline-danger"
+            onClick={() => handleDelete(profile._id, userId)}
+          >
+            <Icon.Trash />
+          </Button>
+        </Col>
+      </Row>
+    </>
   );
 }

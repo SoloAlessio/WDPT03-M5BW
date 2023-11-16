@@ -25,7 +25,7 @@ export default function Experiences({ userId }) {
 
   return (
     <Container fluid className="bg-white border rounded-3 p-4 mt-2 experiences">
-      <Row className="experience-header mb-4">
+      <Row className="experience-header mb-5">
         <Col xs={12} className="d-flex justify-content-between">
           <h4>Esperienza</h4>
           <AddExperience userId={userId} show={show} setShow={setShow} />
