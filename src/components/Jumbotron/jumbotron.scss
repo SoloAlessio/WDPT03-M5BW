@@ -21,6 +21,7 @@ $hoverbtn-color: #084e94;
   >img {
     object-fit: cover;
     width: 100%;
+    filter: blur(10px);
   }
   .jumbotron_camera {
     position: absolute;

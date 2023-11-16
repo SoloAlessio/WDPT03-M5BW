@@ -1,5 +1,5 @@
 import { Col, Container, Row, Button } from "react-bootstrap";
-import { Pencil, PlusLg } from "react-bootstrap-icons";
+import { PlusLg } from "react-bootstrap-icons";
 import { useState, useEffect } from "react";
 import "./experiences.scss";
 import AddExperience from "../AddExperience/Index";
@@ -7,8 +7,7 @@ import SingleExperience from "./SingleExperience";
 
 export default function Experiences({ userId }) {
   const [show, setShow] = useState(false);
-  const [profile, setProfile] = useState([]);
-  const handleShow = () => setShow(true);
+  const [exp, setExp] = useState([]);
 
   useEffect(() => {
     fetch(
@@ -20,7 +19,7 @@ export default function Experiences({ userId }) {
       }
     )
       .then((r) => r.json())
-      .then(setProfile);
+      .then(setExp);
   }, [userId]);
 
   return (
@@ -32,20 +31,17 @@ export default function Experiences({ userId }) {
           <Button
             variant="light"
             className="rounded-circle ms-auto"
-            onClick={handleShow}
+            onClick={() => setShow(true)}
           >
-            <PlusLg size={25} fill="#00000099" />
-          </Button>
-          <Button variant="light" className="rounded-circle">
-            <Pencil size={25} fill="#00000099" />
+            <PlusLg size={25} />
           </Button>
         </Col>
       </Row>
 
       <Row className="mt-3">
-        {profile.map((p) => (
-          <Col xs={12} className="mb-4" key={p._id}>
-            <SingleExperience profile={p} userId={userId} />
+        {exp.map((e) => (
+          <Col xs={12} className="mb-4" key={e._id}>
+            <SingleExperience Experience={e} userId={userId} />
           </Col>
         ))}
       </Row>

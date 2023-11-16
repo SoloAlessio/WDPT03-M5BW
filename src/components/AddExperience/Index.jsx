@@ -2,62 +2,51 @@ import { useState, useEffect } from "react";
 import { Button, Modal, FloatingLabel, Form, Row, Col } from "react-bootstrap";
 import "./AddExperience.scss";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 function AddExperience({ userId, show, setShow, expId }) {
   const handleClose = () => setShow(false);
-  const [checked, setChecked] = useState(false);
-  const [role, setRole] = useState("");
-  const [company, setCompany] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [description, setDescription] = useState("");
-  const [area, setArea] = useState("");
-  const navigate = useNavigate();
+  const url = expId
+    ? `https://striveschool-api.herokuapp.com/api/profile/:${userId}/experiences/:${expId}`
+    : `https://striveschool-api.herokuapp.com/api/profile/:${userId}/experiences`;
 
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
+  const method = expId ? "PUT" : "POST";
+  const [checked, setChecked] = useState(false);
+
+  const [form, setForm] = useState({
+    role: "",
+    company: "",
+    startDate: "",
+    endDate: "",
+    description: "",
+    area: "",
+  });
 
   useEffect(() => {
     if (expId) {
       fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/:${userId}/experiences/:${expId}`,
+        `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}`,
         {
           headers: {
             Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
-          }
-            .then((r) => r.json())
-            .then((experience) => {
-              setRole(experience.role);
-              setCompany(experience.company);
-              setStartDate(experience.startDate);
-              setEndDate(experience.endDate);
-              setDescription(experience.description);
-              setArea(experience.area);
-            }),
+          },
         }
-      );
+      )
+        .then((r) => r.json())
+        .then((experience) => {
+          setForm({
+            role: experience.role,
+            company: experience.company,
+            startDate: experience.startDate,
+            endDate: checked ? null : experience.endDate,
+            description: experience.description,
+            area: experience.area,
+          });
+        });
     }
-  }, [expId, userId]);
+  }, [expId, userId, checked]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    let form = {
-      role: role,
-      company: company,
-      startDate: startDate,
-      endDate: checked ? null : endDate,
-      description: description,
-      area: area,
-    };
-
-    const url = expId
-      ? `https://striveschool-api.herokuapp.com/api/profile/:${userId}/experiences/:${expId}`
-      : `https://striveschool-api.herokuapp.com/api/profile/:${userId}/experiences`;
-
-    const method = expId ? "PUT" : "POST";
 
     fetch(url, {
       headers: {
@@ -69,13 +58,14 @@ function AddExperience({ userId, show, setShow, expId }) {
     }).then((r) => {
       if (r.ok) {
         toast.success(expId ? "modificato" : "salvato");
-        setRole("");
-        setCompany("");
-        setStartDate("");
-        setEndDate("");
-        setDescription("");
-        setArea("");
-        navigate("/Profile");
+        setForm({
+          role: "",
+          company: "",
+          startDate: "",
+          endDate: "",
+          description: "",
+          area: "",
+        });
       } else {
         toast.error("oh oh riprova!");
       }
@@ -90,8 +80,8 @@ function AddExperience({ userId, show, setShow, expId }) {
         </Modal.Header>
         <div style={{ background: "#EDF3F8", padding: "1rem" }}>
           <h2 className="fs-7">Informa la rete</h2>
-          <p className="m-0 AddExpLabel" style={{ fontSize: 14 }}>
-            Attiva l’opzione per informare la tua rete delle principali
+          <p className="m-0 AddExpLabel" style={{ fontSize: "14px" }}>
+            Attiva l'opzione per informare la tua rete delle principali
             modifiche al profilo (ad esempio un nuovo lavoro) e degli
             anniversari lavorativi. Gli aggiornamenti possono richiedere fino a
             2 ore. Scopri di più sulla{" "}
@@ -108,12 +98,12 @@ function AddExperience({ userId, show, setShow, expId }) {
               <Form.Control
                 required
                 type="text"
-                value={role}
+                value={form.role}
                 autoComplete="given-name"
                 className="border rounded"
                 placeholder="Esempio: CTO"
                 onChange={(e) => {
-                  setRole(e.target.value);
+                  setForm({ ...form, role: e.target.value });
                 }}
               />
             </Form.Group>
@@ -124,12 +114,12 @@ function AddExperience({ userId, show, setShow, expId }) {
                 <Form.Control
                   required
                   type="text"
-                  value={company}
+                  value={form.company}
                   autoComplete="given-name"
                   className="border rounded"
                   placeholder="Esempio: EPICODE"
                   onChange={(e) => {
-                    setCompany(e.target.value);
+                    setForm({ ...form, company: e.target.value });
                   }}
                 />
               </Form.Group>
@@ -139,10 +129,10 @@ function AddExperience({ userId, show, setShow, expId }) {
                   required
                   type="text"
                   className="border rounded"
-                  value={area}
+                  value={Form.area}
                   placeholder="Esempio: Milano, Roma"
                   onChange={(e) => {
-                    setArea(e.target.value);
+                    setForm({ ...form, area: e.target.value });
                   }}
                 />
               </Form.Group>
@@ -154,10 +144,10 @@ function AddExperience({ userId, show, setShow, expId }) {
                   type="date"
                   className="d-block w-50 mb-2 p-2 rounded border"
                   required
-                  value={startDate}
+                  value={Form.startDate}
                   id="startDate"
                   onChange={(e) => {
-                    setStartDate(e.target.value);
+                    setForm({ ...form, startDate: e.target.value });
                   }}
                 />
               </Form.Group>
@@ -168,16 +158,16 @@ function AddExperience({ userId, show, setShow, expId }) {
                   className="d-block w-50 mb-2 p-2 rounded border"
                   disabled={checked}
                   id="endDate"
-                  value={checked ? "" : endDate}
+                  value={checked ? "" : form.endDate}
                   onChange={(e) => {
-                    setEndDate(e.target.value);
+                    setForm({ ...form, endDate: e.target.value });
                   }}
                 />
                 <Form.Check
                   type="checkbox"
                   style={{ fontSize: "14px" }}
                   label={`Attualmente ricopro questo ruolo`}
-                  onChange={handleChange}
+                  onChange={() => setChecked(!checked)}
                 />
               </Form.Group>
             </Row>
@@ -190,8 +180,10 @@ function AddExperience({ userId, show, setShow, expId }) {
                 as="textarea"
                 placeholder="Leempio:ve a comment here"
                 style={{ height: "100px" }}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                value={Form.description}
+                onChange={(e) =>
+                  setForm({ ...form, description: e.target.value })
+                }
               />
             </FloatingLabel>
 

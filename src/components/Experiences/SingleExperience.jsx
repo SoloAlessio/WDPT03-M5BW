@@ -1,7 +1,8 @@
 import { Col, Row, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import * as Icon from "react-bootstrap-icons";
+import AddExperience from "../AddExperience/Index";
 
 const DateDifference = (a, b) => {
   if (a === null) {
@@ -43,11 +44,11 @@ const DateDifference = (a, b) => {
   return result.length > 0 ? result : "Le date sono uguali";
 };
 
-export default function SingleExperience({ profile, userId }) {
-  const navigate = useNavigate();
-  const dataInizio = new Date(profile.startDate);
+export default function SingleExperience({ Experience, userId }) {
+  const [show, setShow] = useState(false);
+  const dataInizio = new Date(Experience.startDate);
   const dataFine =
-    profile.endDate === null ? new Date() : new Date(profile.endDate);
+    Experience.endDate === null ? new Date() : new Date(Experience.endDate);
 
   const handleDelete = async (experienceId, userId) => {
     if (!window.confirm("Are you sure?")) {
@@ -66,16 +67,18 @@ export default function SingleExperience({ profile, userId }) {
 
       if (response.ok) {
         toast.success("Esperienza eliminata con successo!");
-        navigate("/Profile");
+      } else {
+        toast.error("Errore: " + response.statusText);
       }
     } catch (error) {
       toast.error("Ops, Qualcosa è andato storto");
+      console.log(error);
     }
   };
 
   return (
     <Row>
-      <Col className="d-flex gap-4">
+      <Col className="d-flex gap-4 mb-4 mb-md-0" md={8}>
         <div>
           <img
             src="https://picsum.photos/48/48"
@@ -85,27 +88,37 @@ export default function SingleExperience({ profile, userId }) {
           />
         </div>
         <div className="details">
-          <h6>{profile.role}</h6>
+          <h6>{Experience.role}</h6>
           <p>
-            {profile.company}
+            {Experience.company}
             <span> tipo di impiego (a tempo pieno/part time)</span>
           </p>
-          <p>{profile.area}</p>
+          <p>{Experience.area}</p>
           <p className="text-body-secondary">
             {dataInizio.toLocaleDateString()} - {dataFine.toLocaleDateString()}{" "}
             · {DateDifference(dataFine, dataInizio)}
           </p>
-          <p className="text-body-secondary">{profile.area}</p>
+          <p className="text-body-secondary">{Experience.area}</p>
           <br />
-          <p>{profile.description}</p>
+          <p>{Experience.description}</p>
         </div>
       </Col>
-      <Col className="text-end">
+      <Col className="text-end" md={4}>
         <Button
-          variant="outline-danger"
-          onClick={() => handleDelete(profile._id, userId)}
+          variant="light"
+          className="me-2"
+          onClick={() => handleDelete(Experience._id, userId)}
         >
           <Icon.Trash />
+        </Button>
+        <AddExperience
+          userId={userId}
+          show={show}
+          setShow={setShow}
+          expId={Experience._id}
+        />
+        <Button variant="light" onClick={() => setShow(true)}>
+          <Icon.PencilFill />
         </Button>
       </Col>
     </Row>
