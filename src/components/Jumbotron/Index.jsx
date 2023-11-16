@@ -52,18 +52,10 @@ export default function Jumbotron({ myProfile, getMyProfile, myId }) {
             <Pencil />
           </Button>
         </Col>
-        <Col
-          md={12}
-          className="mt-4 d-flex justify-content-between align-items-center"
-        >
+        <Col xs={12} className="mt-4 mt-md-0">
           <h3 style={{ marginBottom: 0 }}>
             {myProfile["name"]} {myProfile["surname"]}
           </h3>
-          <div className="ms-auto">
-            <p className="fw-semibold">Ultima esperienza</p>
-          </div>
-        </Col>
-        <Col xs={12}>
           <p style={{ margin: 0 }}>{myProfile["title"]}</p>
           <p className="text-secondary fs-7" style={{ margin: 0 }}>
             {myProfile["area"]} ·{" "}
