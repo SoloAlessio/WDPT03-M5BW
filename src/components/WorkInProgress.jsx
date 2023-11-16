@@ -3,9 +3,15 @@ import { Linkedin } from "react-bootstrap-icons";
 
 function WorkInProgress() {
   return (
-    <Container className="text-center my-5">
-      <Linkedin size={100} color="#0a66c2" />
-      <h5 className="mt-3">Work in progress... please be patient!</h5>
+    <Container
+      fluid
+      className="text-center d-flex align-items-center"
+      style={{ minHeight: "90vh" }}
+    >
+      <Container>
+        <Linkedin size={100} color="#0a66c2" />
+        <h5 className="mt-3">Work in progress... please be patient!</h5>
+      </Container>
     </Container>
   );
 }

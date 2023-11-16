@@ -17,10 +17,9 @@ function App() {
         <Routes>
         <Route path="/" element={<Main />} />
           <Route path="/Profile" element={<Main />} />
-          {/* Implementazione di pagina utente per ricerca navabar */}
           <Route path="/profile/:id" element={<ProfileDetail />} />
-          <Route path="*" element={<NotFound />} />
           <Route path="/wip" element={<WorkInProgress />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <MyFooter />
       </BrowserRouter>

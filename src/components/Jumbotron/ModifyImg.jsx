@@ -2,14 +2,10 @@ import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { CameraFill } from "react-bootstrap-icons";
 import { toast } from "react-toastify";
-import { ring } from 'ldrs'
-
-
-
-
+import { ring } from "ldrs";
 
 function ModifyImg({ myProfile, getMyProfile, show, setShow }) {
-  ring.register()
+  ring.register();
   const handleClose = () => setShow(false);
   const [fd, setFd] = useState(new FormData());
   const [loading, setLoading] = useState(false)
@@ -35,18 +31,19 @@ function ModifyImg({ myProfile, getMyProfile, show, setShow }) {
       if (response.ok) {
         getMyProfile();
         toast.success("Immagine cambiata con successo!");
-        setLoading(false)
+        setLoading(false);
       } else {
-        setLoading(false)
+        setLoading(false);
         toast.error("oh oh riprova!");
       }
     });
   };
+
   return (
     <>
       <Modal show={show} onHide={handleClose} className="Modal-imgProfile">
         <Modal.Header closeButton>
-          <Modal.Title>Foto Profilo</Modal.Title>         
+          <Modal.Title>Foto Profilo</Modal.Title>
         </Modal.Header>
 
         <Modal.Body className="m-auto">
@@ -60,14 +57,20 @@ function ModifyImg({ myProfile, getMyProfile, show, setShow }) {
           <label className="custom-file-upload">
             <input type="file" onChange={handleFile} />
             <div className="d-flex flex-column align-items-center">
-             {loading ? <l-ring
-    size="40"
-    stroke="5"
-    bg-opacity="0"
-    speed="2" 
-    color="#0a66c2" 
-  ></l-ring> : <><CameraFill size={20} /> 
-  <p className="fw-medium m-0">Cambia Foto</p></>} 
+              {loading ? (
+                <l-ring
+                  size="40"
+                  stroke="5"
+                  bg-opacity="0"
+                  speed="2"
+                  color="#0a66c2"
+                ></l-ring>
+              ) : (
+                <>
+                  <CameraFill size={20} />
+                  <p className="fw-medium m-0">Cambia Foto</p>
+                </>
+              )}
             </div>
           </label>
         </Modal.Footer>
