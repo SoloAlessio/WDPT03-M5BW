@@ -104,7 +104,6 @@ export default function NavBar() {
             navbarScroll
           >
             <Nav.Item>
-                       
               <Link
                 to={`/`}
                 className="d-flex flex-column align-items-center justify-content-between nav-link active"
@@ -121,7 +120,7 @@ export default function NavBar() {
 
             <Nav.Item>
               <Nav.Link
-                href="#action1"
+                href="/wip"
                 className="d-flex flex-column align-items-center justify-content-between"
               >
                 <Icon.PeopleFill width="1.5rem" height="1.5rem" />
@@ -131,7 +130,7 @@ export default function NavBar() {
 
             <Nav.Item>
               <Nav.Link
-                href="#action1"
+                href="/wip"
                 className="d-flex flex-column align-items-center justify-content-between"
               >
                 <Icon.BriefcaseFill width="1.5rem" height="1.5rem" />
@@ -141,7 +140,7 @@ export default function NavBar() {
 
             <Nav.Item>
               <Nav.Link
-                href="#action1"
+                href="/wip"
                 className="d-flex flex-column align-items-center justify-content-between"
               >
                 <Icon.ChatDotsFill width="1.5rem" height="1.5rem" />
@@ -151,7 +150,7 @@ export default function NavBar() {
 
             <Nav.Item>
               <Nav.Link
-                href="#action1"
+                href="/wip"
                 className="d-flex flex-column align-items-center justify-content-between"
               >
                 <Icon.BellFill width="1.5rem" height="1.5rem" />
@@ -165,14 +164,12 @@ export default function NavBar() {
             >
               <Icon.PersonCircle width="1.5rem" height="1.5rem" />
               <NavDropdown title="Tu" id="navbarScrollingDropdown">
-                <Link to={`/`} className="dropdown-item ">
-                    Home
+                <Link to={`/wip`} className="dropdown-item ">
+                  Home
                 </Link>
-                <NavDropdown.Item href="#action4">
-                  Another action
-                </NavDropdown.Item>
+                <NavDropdown.Item href="/wip">Another action</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">
+                <NavDropdown.Item href="/wip">
                   Something else here
                 </NavDropdown.Item>
               </NavDropdown>
@@ -181,12 +178,10 @@ export default function NavBar() {
             <Nav.Item className="d-flex flex-column align-items-center justify-content-between">
               <Icon.Grid3x3GapFill width="1.5rem" height="1.5rem" />
               <NavDropdown title="Per le aziende" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
-                  Another action
-                </NavDropdown.Item>
+                <NavDropdown.Item href="/wip">Action</NavDropdown.Item>
+                <NavDropdown.Item href="/wip">Another action</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">
+                <NavDropdown.Item href="/wip">
                   Something else here
                 </NavDropdown.Item>
               </NavDropdown>
@@ -200,31 +195,31 @@ export default function NavBar() {
             navbarScroll
           >
             <Nav.Item>
-              <Nav.Link href="#action1">Home</Nav.Link>
+              <Nav.Link href="/wip">Home</Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link href="#action1">Rete</Nav.Link>
+              <Nav.Link href="/wip">Rete</Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link href="#action1">Lavoro</Nav.Link>
+              <Nav.Link href="/wip">Lavoro</Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link href="#action1">Messaggi</Nav.Link>
+              <Nav.Link href="/wip">Messaggi</Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link href="#action1">Notifiche</Nav.Link>
+              <Nav.Link href="/wip">Notifiche</Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link href="#action1">Profilo</Nav.Link>
+              <Nav.Link href="/profile/:id">Profilo</Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link href="#action1">Per le Aziende</Nav.Link>
+              <Nav.Link href="/wip">Per le Aziende</Nav.Link>
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>

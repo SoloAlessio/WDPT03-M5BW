@@ -82,7 +82,6 @@ export default function SingleExperience({ Experience, userId }) {
         <div>
           <img
             src="https://picsum.photos/48/48"
-            style={{ width: "48px", height: "48px", backgroundColor: "grey" }}
             className="rounded-circle"
             alt="experience-cover"
           />

@@ -29,50 +29,51 @@ export default function Jumbotron({ myProfile, getMyProfile, myId }) {
           </div>
         </Col>
       </Row>
-      <Row>
-        <Col xs={12} className="ps-4">
-          <div className="jumbotronProfile">
-            <div
-              onClick={myId === myProfile["_id"] ? handleShow : handleClose}
-              style={
-                myId === myProfile["_id"]
-                  ? { cursor: "pointer" }
-                  : { cursor: "inherit" }
-              }
-            >
-              <img src={myProfile["image"]} className="rounded-circle" alt="" />
-            </div>
-            <Button variant="light" className="rounded-circle">
-              <Pencil />
-            </Button>
+      <Row className="mx-1">
+        <Col xs={12} className="jumbotronProfile">
+          <div
+            onClick={myId === myProfile["_id"] ? handleShow : handleClose}
+            style={
+              myId === myProfile["_id"]
+                ? { cursor: "pointer" }
+                : { cursor: "inherit" }
+            }
+          >
+            <img src={myProfile["image"]} className="rounded-circle" alt="" />
           </div>
-          <div className="my-4 d-flex justify-content-between">
-            <div>
-              <h3 className="m-0 fs-4 text">
-                {myProfile["name"]} {myProfile["surname"]}
-              </h3>
-              <p className="mb-1">{myProfile["title"]}</p>
-              <p className="text-secondary fs-7 m-0">
-                {myProfile["area"]} ·{" "}
-                <span className="fw-semibold colorBlu">
-                  Informazioni di contatto
-                </span>{" "}
-              </p>
-              <p className="fs-7 fw-semibold colorBlu">93 collegamenti</p>
-              <Button className="rounded-pill fw-semibold btn-blue me-2">
-                Disponibile Per
-              </Button>
-              <Button className="rounded-pill fw-semibold btn-white me-2">
-                Aggiungi sezione del profilo
-              </Button>
-              <Button className="rounded-pill fw-semibold btn-grey">
-                Altro
-              </Button>
-            </div>
-            <div className="me-auto ms-20">
-              <p className="fw-semibold">Ultima esperienza</p>
-            </div>
+          <Button variant="light" className="rounded-circle">
+            <Pencil />
+          </Button>
+        </Col>
+        <Col
+          xs={12}
+          className="mt-4 d-flex justify-content-between align-items-center"
+        >
+          <h3 style={{ marginBottom: 0 }}>
+            {myProfile["name"]} {myProfile["surname"]}
+          </h3>
+          <div className="ms-auto">
+            <p className="fw-semibold">Ultima esperienza</p>
           </div>
+        </Col>
+        <Col xs={12}>
+          <p style={{ margin: 0 }}>{myProfile["title"]}</p>
+          <p className="text-secondary fs-7" style={{ margin: 0 }}>
+            {myProfile["area"]} ·{" "}
+            <span className="fw-semibold colorBlu">
+              Informazioni di contatto
+            </span>{" "}
+          </p>
+          <p className="fs-7 fw-semibold colorBlu">93 collegamenti</p>
+        </Col>
+        <Col xs={12} className="mb-3 d-flex flex-wrap gap-2">
+          <Button className="rounded-pill fw-semibold btn-blue">
+            Disponibile Per
+          </Button>
+          <Button className="rounded-pill fw-semibold btn-white">
+            Aggiungi sezione del profilo
+          </Button>
+          <Button className="rounded-pill fw-semibold btn-grey">Altro</Button>
         </Col>
       </Row>
       <ModifyImg
