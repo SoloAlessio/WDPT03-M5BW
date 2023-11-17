@@ -115,14 +115,6 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
       ).then((r) => {
         if (r.ok) {
           uploadImg();
-          setForm({
-            role: "",
-            company: "",
-            startDate: "",
-            endDate: "",
-            description: "",
-            area: "",
-          });
           toast.success("Esperienza Modificata!");
           handleClose();
         } else {
