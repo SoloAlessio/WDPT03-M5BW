@@ -294,11 +294,8 @@ export default function NavBar() {
                 id="navbarScrollingDropdown"
                 align={{ sm: "end" }}
               >
-                <NavDropdown.Item href="/wip">Action</NavDropdown.Item>
-                <NavDropdown.Item href="/wip">Another action</NavDropdown.Item>
-                <NavDropdown.Divider />
                 <NavDropdown.Item href="/wip">
-                  Something else here
+                  Passa a Linkedin Enterprise
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav.Item>

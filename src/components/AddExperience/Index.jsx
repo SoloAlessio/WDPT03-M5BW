@@ -248,7 +248,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
             </FloatingLabel>
 
             <Button className="rounded-2 py-2 w-100 btn-blue" type="submit">
-              Aggiungi Esperienza
+              {!expId ? "Aggiungi Esperienza" : "Modifica Esperienza"}
             </Button>
           </Form>
         </Modal.Body>
