@@ -167,6 +167,7 @@ export default function NavBar() {
               </Nav.Link>
             </Nav.Item>
 
+            {/* Account Dropdown */}
             <Nav.Item
               className="d-flex flex-column align-items-center justify-content-between border-end me-2"
               align="start"
@@ -211,12 +212,16 @@ export default function NavBar() {
 
                 <Container className="px-4">
                   <h6 className="py-2">Account</h6>
-                  <div className="d-flex mb-2">
-                    <Button
-                      variant="warning"
-                      style={{ height: "16px", width: "16px" }}
-                      className="p-3"
-                    ></Button>
+                  <div className="d-flex mb-2 align-items-center">
+                    <div
+                      style={{
+                        height: "20px",
+                        width: "20px",
+                        backgroundImage:
+                          "conic-gradient(from -45deg, #f8c77e 180deg, #e7a33e 0)",
+                      }}
+                      className="rounded-1"
+                    />
                     <Dropdown.Item href="/wip" className="fs-7">
                       Riattiva Premium
                     </Dropdown.Item>

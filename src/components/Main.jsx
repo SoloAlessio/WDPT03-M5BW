@@ -4,8 +4,10 @@ import Jumbotron from "./Jumbotron/Index.jsx";
 import Experiences from "./Experiences/WorkArea.jsx";
 import { Link } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
+import { dotStream } from "ldrs";
 
 export default function Main() {
+  dotStream.register();
   const [allProfiles, setAllProfiles] = useState("");
   const [myProfile, setMyProfile] = useState("");
   const [myId, setMyId] = useState("");
@@ -51,17 +53,24 @@ export default function Main() {
           <Container className="bg-white border rounded-3 p-3 mt-2 mt-lg-0">
             <div className="d-flex justify-content-between align-items-center">
               <p className="fw-semibold mb-2">Lingua del Profilo</p>
+              <Icon.PencilSquare
+                style={{ cursor: "pointer" }}
+                onClick={() => alert("Work in Progress...")}
+              />
             </div>
             <p className="text-secondary fs-7">Impostazioni</p>
             <hr />
-            <p className="fw-semibold mb-2">Public profile & URL</p>
+            <div className="d-flex justify-content-between align-items-center">
+              <p className="fw-semibold mb-2">Public profile & URL</p>
+              <Icon.PencilSquare
+                style={{ cursor: "pointer" }}
+                onClick={() => alert("Work in Progress...")}
+              />
+            </div>
             <p className="text-secondary fs-7">https://www.linkedin/</p>
           </Container>
-          <Container
-            fluid
-            className="bg-white border rounded-3 p-3 mt-2"
-            style={{ position: "sticky", top: "92px" }}
-          >
+
+          <Container fluid className="bg-white border rounded-3 p-3 mt-2">
             <p className="fw-semibold mb-0">Persone che potresti conoscere</p>
             <p className="text-secondary">Dalla tua scuola o università</p>
             <Container fluid>
@@ -98,7 +107,13 @@ export default function Main() {
                   </Link>
                 ))
               ) : (
-                <p>loading...</p>
+                <Container fluid className="text-center py-4">
+                  <l-dot-stream
+                    size="60"
+                    speed="2.5"
+                    color="#0a66c2"
+                  ></l-dot-stream>
+                </Container>
               )}
             </Container>
           </Container>
