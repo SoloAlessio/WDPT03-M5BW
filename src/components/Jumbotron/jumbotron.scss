@@ -148,3 +148,18 @@ $hoverbtn-color: #084e94;
     height: 250px;
   }
 }
+
+.AggExp-img {
+  label:hover {
+    filter: opacity(0.7);
+  }
+  input[type="file"] {
+    display: none;
+  }
+  .custom-file-upload {
+    display: inline-block;
+
+    cursor: pointer;
+  }
+  
+}
