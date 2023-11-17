@@ -13,7 +13,7 @@ import {
 import { Link } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
 import "./navbar.scss";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function NavBar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -39,6 +39,26 @@ export default function NavBar() {
       )
     );
   }
+
+  const [myProfile, setMyProfile] = useState("");
+
+  const getMyProfile = useCallback(() => {
+    fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+      },
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        setMyProfile(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    getMyProfile();
+  }, [getMyProfile]);
+
+  console.log(myProfile);
 
   return (
     <Navbar sticky="top" expand="lg" bg="light">
@@ -173,20 +193,22 @@ export default function NavBar() {
                 id="dropdown-menu-align-responsive-1"
                 className="nav-dropdown-no-decoration"
               >
-                <Link to={`/`} className="no-dec dropdown-item">
+                <Link to={`/profile`} className="dropdown-item">
                   <Row className="d-flex">
                     <Col xs={2}>
                       <img
                         width="50rem"
                         height="50rem"
-                        src="https://picsum.photos/48/48"
+                        src={myProfile.image}
                         className="rounded-circle"
                         alt="experience-cover"
                       />
                     </Col>
-                    <Col xs={9} className="ms-2 mb-2">
-                      <h5>nome</h5>
-                      <l>esperienza/ruolo</l>
+                    <Col xs={9} className="ms-2">
+                      <h5 className="mb-0">
+                        {myProfile.name} {myProfile.surname}
+                      </h5>
+                      <p className="mb-2">{myProfile.title}</p>
                     </Col>
                     <Button className="rounded-pill fw-semibold btn-white">
                       Visualizza profilo
@@ -195,7 +217,7 @@ export default function NavBar() {
                 </Link>
                 <NavDropdown.Divider />
                 <Container>
-                  <h5>Account</h5>
+                  <h5 className="ms-2">Account</h5>
                   <div className="d-flex">
                     <Button variant="warning" className="p-3 ms-2"></Button>
                     <Dropdown.Item href="/wip">Riattiva Premium</Dropdown.Item>
@@ -210,7 +232,7 @@ export default function NavBar() {
                 </Container>
                 <NavDropdown.Divider />
                 <Container>
-                  <h5>Gestisci</h5>
+                  <h5 className="ms-2">Gestisci</h5>
                   <Dropdown.Item href="/wip">Post e attività</Dropdown.Item>
                   <Dropdown.Item href="/wip" className="text-truncate">
                     Account per la pubblicazione di offer..
