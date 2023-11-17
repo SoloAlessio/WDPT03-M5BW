@@ -93,6 +93,7 @@ export default function SingleExperience({
             alt="experience-cover"
             width={48}
             height={48}
+            style={{objectFit: "contain"}}
           />
         </div>
         <div className="details ps-3">
