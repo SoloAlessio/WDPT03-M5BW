@@ -9,7 +9,7 @@ export default function ChatArea() {
       className="bg-white border rounded-top-3 p-3 d-md-fixed"
     >
       <Row className="align-items-center">
-        <Col lg="auto">
+        <Col xs="auto">
           <img
             src="https://images.pexels.com/photos/8204385/pexels-photo-8204385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             alt=""
