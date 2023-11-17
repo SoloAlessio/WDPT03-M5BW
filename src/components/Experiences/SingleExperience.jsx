@@ -102,8 +102,7 @@ export default function SingleExperience({
             {dataInizio.toLocaleDateString()} - {dataFine.toLocaleDateString()}{" "}
             · {DateDifference(dataFine, dataInizio)}
           </p>
-          <p className="text-body-secondary">{Experience.area}</p>
-          <br />
+          <p className="text-body-secondary mb-2">{Experience.area}</p>
           <p>{Experience.description}</p>
         </div>
       </Col>

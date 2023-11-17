@@ -70,11 +70,15 @@
       padding-block: 4px !important;
     }
   }
-}
+  .nav-dropdown-no-decoration {
+    a {
+      text-decoration: none;
+      color: grey;
 
-.nav-dropdown-no-decoration {
-  a {
-    text-decoration: none;
-    color: grey;
+      &:hover {
+        background-color: white;
+        text-decoration: underline;
+      }
+    }
   }
 }

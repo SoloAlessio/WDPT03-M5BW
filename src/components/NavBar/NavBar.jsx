@@ -8,6 +8,7 @@ import {
   Button,
   Row,
   Col,
+  Dropdown,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
@@ -172,7 +173,7 @@ export default function NavBar() {
                 id="dropdown-menu-align-responsive-1"
                 className="nav-dropdown-no-decoration"
               >
-                <Link to={`/wip`} className="dropdown-item">
+                <Link to={`/`} className="no-dec dropdown-item">
                   <Row className="d-flex">
                     <Col xs={2}>
                       <img
@@ -193,32 +194,32 @@ export default function NavBar() {
                   </Row>
                 </Link>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="/wip" className="">
+                <Container>
                   <h5>Account</h5>
-                  <div>
-                    <Button variant="warning" className="p-2 me-2"></Button>
-                    <a className="decoration-none" href="/wip">
-                      Riattiva Premium
-                    </a>
+                  <div className="d-flex">
+                    <Button variant="warning" className="p-3 ms-2"></Button>
+                    <Dropdown.Item href="/wip">Riattiva Premium</Dropdown.Item>
                   </div>
                   <div className="d-flex flex-column">
-                    <a href="/wip">Impostazioni e privacy</a>
-                    <a href="/wip">Guida</a>
-                    <a href="/wip">Lingua</a>
+                    <Dropdown.Item href="/wip">
+                      Impostazioni e privacy
+                    </Dropdown.Item>
+                    <Dropdown.Item href="/wip">Guida</Dropdown.Item>
+                    <Dropdown.Item href="/wip">Lingua</Dropdown.Item>
                   </div>
-                </NavDropdown.Item>
+                </Container>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="/wip" className="d-flex flex-column">
+                <Container>
                   <h5>Gestisci</h5>
-                  <a href="/wip">Post e attività</a>
-                  <a href="/wip" className="text-truncate">
-                    Account per la pubblicazione di offerte e{" "}
-                  </a>
-                  <a href="/wip">Lingua</a>
-                </NavDropdown.Item>
+                  <Dropdown.Item href="/wip">Post e attività</Dropdown.Item>
+                  <Dropdown.Item href="/wip" className="text-truncate">
+                    Account per la pubblicazione di offer..
+                  </Dropdown.Item>
+                  <Dropdown.Item href="/wip">Lingua</Dropdown.Item>
+                </Container>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/wip">
-                  <a href="/wip">Esci</a>
+                  <Dropdown.Item href="/wip">Esci</Dropdown.Item>
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav.Item>
