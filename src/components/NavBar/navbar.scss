@@ -70,15 +70,9 @@
       padding-block: 4px !important;
     }
   }
-  .nav-dropdown-no-decoration {
-    a {
-      text-decoration: none;
-      color: grey;
-
-      &:hover {
-        background-color: white;
-        text-decoration: underline;
-      }
-    }
+  .dropdown-menu{
+    margin-top: 16px;
+    box-shadow: 0 8px 16px rgba(25,25,25,.15);
+    border-top-right-radius: 2px;
   }
 }

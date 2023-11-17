@@ -107,6 +107,7 @@ export default function NavBar() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
+            {/* Notifications */}
             <Nav.Item>
               <Link
                 to={`/`}
@@ -122,6 +123,7 @@ export default function NavBar() {
               </Link>
             </Nav.Item>
 
+            {/* Rete */}
             <Nav.Item>
               <Nav.Link
                 href="/wip"
@@ -132,6 +134,7 @@ export default function NavBar() {
               </Nav.Link>
             </Nav.Item>
 
+            {/* Lavoro */}
             <Nav.Item>
               <Nav.Link
                 href="/wip"
@@ -142,6 +145,7 @@ export default function NavBar() {
               </Nav.Link>
             </Nav.Item>
 
+            {/* Messaggi */}
             <Nav.Item>
               <Nav.Link
                 href="/wip"
@@ -152,6 +156,7 @@ export default function NavBar() {
               </Nav.Link>
             </Nav.Item>
 
+            {/* Notifiche */}
             <Nav.Item>
               <Nav.Link
                 href="/wip"
@@ -173,60 +178,97 @@ export default function NavBar() {
                 id="dropdown-menu-align-responsive-1"
                 className="nav-dropdown-no-decoration"
               >
-                <Link to={`/`} className="no-dec dropdown-item">
-                  <Row className="d-flex">
-                    <Col xs={2}>
-                      <img
-                        width="50rem"
-                        height="50rem"
-                        src="https://picsum.photos/48/48"
-                        className="rounded-circle"
-                        alt="experience-cover"
-                      />
+                <Container fluid>
+                  <Link to={`/`} className="no-dec dropdown-item">
+                    <Row className="align-items-center mb-2">
+                      <Col xs="auto" className="ps-0">
+                        <img
+                          width="50rem"
+                          height="50rem"
+                          src="https://picsum.photos/48/48"
+                          className="rounded-circle"
+                          alt="experience-cover"
+                        />
+                      </Col>
+                      <Col className="mb-2 px-0">
+                        <h6 className="mb-0 fw-semibold">nome</h6>
+                        <p className="mb-0 text-secondary fs-7">
+                          esperienza/ruolo
+                        </p>
+                      </Col>
+                    </Row>
+                  </Link>
+                  <Row>
+                    <Col>
+                      <Button className="rounded-pill fw-semibold btn-white w-100">
+                        Visualizza profilo
+                      </Button>
                     </Col>
-                    <Col xs={9} className="ms-2 mb-2">
-                      <h5>nome</h5>
-                      <l>esperienza/ruolo</l>
-                    </Col>
-                    <Button className="rounded-pill fw-semibold btn-white">
-                      Visualizza profilo
-                    </Button>
                   </Row>
-                </Link>
+                </Container>
+
                 <NavDropdown.Divider />
-                <Container>
-                  <h5>Account</h5>
-                  <div className="d-flex">
-                    <Button variant="warning" className="p-3 ms-2"></Button>
-                    <Dropdown.Item href="/wip">Riattiva Premium</Dropdown.Item>
+
+                <Container className="px-4">
+                  <h6 className="py-2">Account</h6>
+                  <div className="d-flex mb-2">
+                    <Button
+                      variant="warning"
+                      style={{ height: "16px", width: "16px" }}
+                      className="p-3"
+                    ></Button>
+                    <Dropdown.Item href="/wip" className="fs-7">
+                      Riattiva Premium
+                    </Dropdown.Item>
                   </div>
                   <div className="d-flex flex-column">
-                    <Dropdown.Item href="/wip">
+                    <Dropdown.Item href="/wip" className="px-0 fs-7">
                       Impostazioni e privacy
                     </Dropdown.Item>
-                    <Dropdown.Item href="/wip">Guida</Dropdown.Item>
-                    <Dropdown.Item href="/wip">Lingua</Dropdown.Item>
+                    <Dropdown.Item href="/wip" className="px-0 fs-7">
+                      Guida
+                    </Dropdown.Item>
+                    <Dropdown.Item href="/wip" className="px-0 fs-7">
+                      Lingua
+                    </Dropdown.Item>
                   </div>
                 </Container>
+
                 <NavDropdown.Divider />
-                <Container>
-                  <h5>Gestisci</h5>
-                  <Dropdown.Item href="/wip">Post e attività</Dropdown.Item>
-                  <Dropdown.Item href="/wip" className="text-truncate">
+
+                <Container className="px-4">
+                  <h6 className="py-2">Gestisci</h6>
+                  <Dropdown.Item href="/wip" className="px-0 fs-7">
+                    Post e attività
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    href="/wip"
+                    className="text-truncate px-0 fs-7"
+                  >
                     Account per la pubblicazione di offer..
                   </Dropdown.Item>
-                  <Dropdown.Item href="/wip">Lingua</Dropdown.Item>
+                  <Dropdown.Item href="/wip" className="px-0 fs-7">
+                    Lingua
+                  </Dropdown.Item>
                 </Container>
+
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="/wip">
-                  <Dropdown.Item href="/wip">Esci</Dropdown.Item>
-                </NavDropdown.Item>
+
+                <Container className="px-4">
+                  <Dropdown.Item href="/wip" className="px-0">
+                    Esci
+                  </Dropdown.Item>
+                </Container>
               </NavDropdown>
             </Nav.Item>
 
             <Nav.Item className="d-flex flex-column align-items-center justify-content-between">
               <Icon.Grid3x3GapFill width="1.5rem" height="1.5rem" />
-              <NavDropdown title="Per le aziende" id="navbarScrollingDropdown">
+              <NavDropdown
+                title="Per le aziende"
+                id="navbarScrollingDropdown"
+                align={{ sm: "end" }}
+              >
                 <NavDropdown.Item href="/wip">Action</NavDropdown.Item>
                 <NavDropdown.Item href="/wip">Another action</NavDropdown.Item>
                 <NavDropdown.Divider />
@@ -236,6 +278,7 @@ export default function NavBar() {
               </NavDropdown>
             </Nav.Item>
           </Nav>
+
           {/* Mobile device nav Links */}
           <Nav
             className="ms-auto my-2 my-lg-0 d-flex d-lg-none"

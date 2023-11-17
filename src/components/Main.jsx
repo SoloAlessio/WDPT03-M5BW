@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import Jumbotron from "./Jumbotron/Index.jsx";
 import Experiences from "./Experiences/WorkArea.jsx";
 import { Link } from "react-router-dom";
+import * as Icon from "react-bootstrap-icons";
 
 export default function Main() {
   const [allProfiles, setAllProfiles] = useState("");
@@ -47,8 +48,18 @@ export default function Main() {
           {myProfile && <Experiences userId={myProfile._id} myId={myId} />}
         </Col>
         <Col lg={4}>
+          <Container className="bg-white border rounded-3 p-3 mt-2 mt-lg-0">
+            <div className="d-flex justify-content-between align-items-center">
+              <p className="fw-semibold mb-2">Lingua del Profilo</p>
+            </div>
+            <p className="text-secondary fs-7">Impostazioni</p>
+            <hr />
+            <p className="fw-semibold mb-2">Public profile & URL</p>
+            <p className="text-secondary fs-7">https://www.linkedin/</p>
+          </Container>
           <Container
-            className="bg-white container-fluid border rounded-3 p-3 mt-2 mt-lg-0"
+            fluid
+            className="bg-white border rounded-3 p-3 mt-2"
             style={{ position: "sticky", top: "92px" }}
           >
             <p className="fw-semibold mb-0">Persone che potresti conoscere</p>
