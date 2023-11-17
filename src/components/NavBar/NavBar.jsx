@@ -58,8 +58,6 @@ export default function NavBar() {
     getMyProfile();
   }, [getMyProfile]);
 
-  console.log(myProfile);
-
   return (
     <Navbar sticky="top" expand="lg" bg="light">
       <Container>
@@ -199,32 +197,54 @@ export default function NavBar() {
                 id="dropdown-menu-align-responsive-1"
                 className="nav-dropdown-no-decoration"
               >
-                <Nav.Link to={`/profile`} className="dropdown-item">
-                  <Row className="d-flex">
-                    <Col xs={2}>
-                      <img
-                        width="50rem"
-                        height="50rem"
-                        src={myProfile.image}
-                        className="rounded-circle"
-                        alt="experience-cover"
-                      />
-                    </Col>
-                    <Col xs={9} className="ms-2">
-                      <h5 className="mb-0">
-                        {myProfile.name} {myProfile.surname}
-                      </h5>
-                      <p className="mb-2">{myProfile.title}</p>
+                <Container fluid>
+                  <Link to={`/`} className="no-dec dropdown-item">
+                    <Row className="align-items-center mb-2">
+                      <Col xs="auto" className="ps-0">
+                        <img
+                          width="50rem"
+                          height="50rem"
+                          src={myProfile.image}
+                          className="rounded-circle object-fit-cover"
+                          alt="experience-cover"
+                        />
+                      </Col>
+                      <Col className="mb-2 px-0">
+                        <h5 className="mb-1 fw-semibold">
+                          {myProfile.name} {myProfile.surname}
+                        </h5>
+                        <p className="mb-0 text-secondary fs-6">
+                          {myProfile.title}
+                        </p>
+                      </Col>
+                    </Row>
+                  </Link>
+                  <Row>
+                    <Col>
+                      <Button className="rounded-pill fw-semibold btn-white w-100">
+                        Visualizza profilo
+                      </Button>
                     </Col>
                   </Row>
-                </Nav.Link>
+                </Container>
 
                 <NavDropdown.Divider />
-                <Container>
-                  <h5 className="ms-2">Account</h5>
-                  <div className="d-flex">
-                    <Button variant="warning" className="p-3 ms-2"></Button>
-                    <Dropdown.Item href="/wip">Riattiva Premium</Dropdown.Item>
+
+                <Container className="px-4">
+                  <h6 className="py-2">Account</h6>
+                  <div className="d-flex mb-2 align-items-center">
+                    <div
+                      style={{
+                        height: "20px",
+                        width: "20px",
+                        backgroundImage:
+                          "conic-gradient(from -45deg, #f8c77e 180deg, #e7a33e 0)",
+                      }}
+                      className="rounded-1"
+                    />
+                    <Dropdown.Item href="/wip" className="fs-7">
+                      Riattiva Premium
+                    </Dropdown.Item>
                   </div>
                   <div className="d-flex flex-column">
                     <Dropdown.Item href="/wip" className="px-0 fs-7">
@@ -240,10 +260,16 @@ export default function NavBar() {
                 </Container>
 
                 <NavDropdown.Divider />
-                <Container>
-                  <h5 className="ms-2">Gestisci</h5>
-                  <Dropdown.Item href="/wip">Post e attività</Dropdown.Item>
-                  <Dropdown.Item href="/wip" className="text-truncate">
+
+                <Container className="px-4">
+                  <h6 className="py-2">Gestisci</h6>
+                  <Dropdown.Item href="/wip" className="px-0 fs-7">
+                    Post e attività
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    href="/wip"
+                    className="text-truncate px-0 fs-7"
+                  >
                     Account per la pubblicazione di offer..
                   </Dropdown.Item>
                   <Dropdown.Item href="/wip" className="px-0 fs-7">
