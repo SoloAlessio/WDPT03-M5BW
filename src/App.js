@@ -8,6 +8,7 @@ import NotFound from "./components/NotFound";
 import ProfileDetail from "./components/ProfileDetail";
 import { ToastContainer } from "react-toastify";
 import WorkInProgress from "./components/WorkInProgress";
+import ChatArea from "./components/ChatArea/ChatArea";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <MyFooter />
+        <ChatArea />
       </BrowserRouter>
       <ToastContainer position="bottom-right" />
     </div>
