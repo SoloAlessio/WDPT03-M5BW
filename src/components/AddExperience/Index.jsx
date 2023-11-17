@@ -98,7 +98,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
     })
     .catch(() => toast.error("oh oh riprova!")) 
     } else {
-      fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/:${expId}`, {
+      fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}`, {
         headers: {
           Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
           "Content-Type": "application/json",
