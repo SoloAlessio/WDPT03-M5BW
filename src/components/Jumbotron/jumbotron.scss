@@ -132,9 +132,8 @@ $hoverbtn-color: #084e94;
   }
 }
 .Modal-imgProfile {
-  .modal-content {
-    background-color: #1b1f23;
-    color: white;
+  label:hover {
+    filter: opacity(0.7);
   }
   input[type="file"] {
     display: none;

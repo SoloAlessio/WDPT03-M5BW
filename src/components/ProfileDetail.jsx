@@ -42,7 +42,7 @@ export default function ProfileDetail() {
       <Row>
         <Col md={8}>
           <Jumbotron myProfile={myProfile} myId={myId} />
-          <Experiences userId={id} />
+          <Experiences userId={id} myId={myId}/>
         </Col>
       </Row>
     </Container>

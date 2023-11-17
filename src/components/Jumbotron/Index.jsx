@@ -59,9 +59,6 @@ export default function Jumbotron({ myProfile, getMyProfile, myId }) {
           <h3 style={{ marginBottom: 0 }}>
             {myProfile["name"]} {myProfile["surname"]}
           </h3>
-          <div className="ms-auto">
-            <p className="fw-semibold">Ultima esperienza</p>
-          </div>
         </Col>
         <Col xs={12}>
           <p style={{ margin: 0 }}>{myProfile["title"]}</p>
