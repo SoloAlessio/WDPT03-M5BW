@@ -67,7 +67,7 @@ export default function Main() {
                 onClick={() => alert("Work in Progress...")}
               />
             </div>
-            <p className="text-secondary fs-7">https://www.linkedin/</p>
+            <p className="text-secondary fs-7">https://www.linkedin/{myProfile["name"]}-{myProfile["surname"]}</p>
           </Container>
 
           <Container fluid className="bg-white border rounded-3 p-3 mt-2">
