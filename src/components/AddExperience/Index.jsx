@@ -16,7 +16,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
     role: "",
     company: "",
     startDate: "",
-    endDate: "",
+    endDate: new Date().toString().slice(0, 10),
     description: "",
     area: "",
   });
@@ -36,14 +36,17 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
           setForm({
             role: experience.role,
             company: experience.company,
-            startDate: experience.startDate,
-            endDate: checked ? null : experience.endDate,
+            startDate: experience.startDate.slice(0, 10),
+            endDate:
+              experience.endDate?.slice(0, 10) ||
+              new Date().toISOString().slice(0, 10),
             description: experience.description,
             area: experience.area,
           });
+          setChecked(!experience.endDate);
         });
     }
-  }, [expId, userId, checked]);
+  }, [expId, userId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,7 +65,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
           role: "",
           company: "",
           startDate: "",
-          endDate: "",
+          endDate: new Date().toString().slice(0, 10),
           description: "",
           area: "",
         });
@@ -167,6 +170,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
                 />
                 <Form.Check
                   type="checkbox"
+                  checked={checked}
                   style={{ fontSize: "14px" }}
                   label={`Attualmente ricopro questo ruolo`}
                   onChange={() => setChecked(!checked)}

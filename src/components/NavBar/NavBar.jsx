@@ -264,7 +264,9 @@ export default function NavBar() {
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link href="/profile/:id">Profilo</Nav.Link>
+              <Link to={"/profile"} className="nav-link">
+                Profilo
+              </Link>
             </Nav.Item>
 
             <Nav.Item>
