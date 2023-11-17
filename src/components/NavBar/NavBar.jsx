@@ -210,8 +210,10 @@ export default function NavBar() {
                         />
                       </Col>
                       <Col className="mb-2 px-0">
-                        <h6 className="mb-1 fw-semibold">{myProfile.name}</h6>
-                        <p className="mb-0 text-secondary fs-7">
+                        <h5 className="mb-1 fw-semibold">
+                          {myProfile.name} {myProfile.surname}
+                        </h5>
+                        <p className="mb-0 text-secondary fs-6">
                           {myProfile.title}
                         </p>
                       </Col>
