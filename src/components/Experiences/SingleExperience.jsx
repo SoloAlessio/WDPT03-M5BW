@@ -93,15 +93,12 @@ export default function SingleExperience({
             alt="experience-cover"
             width={48}
             height={48}
-            style={{objectFit: "contain"}}
+            style={{ objectFit: "contain" }}
           />
         </div>
         <div className="details ps-3">
           <h6>{Experience.role}</h6>
-          <p>
-            {Experience.company}
-            <span> · a tempo pieno</span>
-          </p>
+          <p>{Experience.company}</p>
           <p className="text-body-secondary">
             {dataInizio.toLocaleDateString()} - {dataFine.toLocaleDateString()}{" "}
             · {DateDifference(dataFine, dataInizio)}

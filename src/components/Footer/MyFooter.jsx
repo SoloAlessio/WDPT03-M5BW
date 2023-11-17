@@ -120,7 +120,11 @@ const MyFooter = () => (
 
         <Col sm="3">
           <p className="mt-1 mb-0">Seleziona lingua</p>
-          <select className="p-2 rounded" style={{ minWidth: "50px" }}>
+          <select
+            className="p-2 rounded"
+            id="lang-selector"
+            style={{ minWidth: "50px" }}
+          >
             {languages.map((language, index) => (
               <option key={index}>{language}</option>
             ))}

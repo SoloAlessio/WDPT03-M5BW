@@ -74,5 +74,9 @@
     margin-top: 16px;
     box-shadow: 0 8px 16px rgba(25,25,25,.15);
     border-top-right-radius: 2px;
+    
+    a:active{
+      background-color: unset;
+    }
   }
 }
