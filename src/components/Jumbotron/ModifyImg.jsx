@@ -32,6 +32,7 @@ function ModifyImg({ myProfile, getMyProfile, show, setShow }) {
         getMyProfile();
         toast.success("Immagine cambiata con successo!");
         setLoading(false);
+        handleClose()
       } else {
         setLoading(false);
         toast.error("oh oh riprova!");

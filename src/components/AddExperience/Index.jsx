@@ -4,22 +4,41 @@ import "./AddExperience.scss";
 import { toast } from "react-toastify";
 
 function AddExperience({ userId, show, setShow, expId, getExperiences }) {
-  const handleClose = () => setShow(false);
-  const url = expId
-    ? `https://striveschool-api.herokuapp.com/api/profile/:${userId}/experiences/:${expId}`
-    : `https://striveschool-api.herokuapp.com/api/profile/:${userId}/experiences`;
-
-  const method = expId ? "PUT" : "POST";
+  
   const [checked, setChecked] = useState(false);
+  const [fd, setFd] = useState(new FormData());
+
+  const uploadImg = () => {
+    fetch(
+      `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}/picture`,
+        {
+    method: "POST",
+    body: fd,
+    headers: {
+      Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+    },
+  }
+  ).then(() => {getExperiences()})
+  }
+
+  const handleFile = (ev) => {
+    setFd((prev) => {
+      prev.delete("experience");
+      prev.append("experience", ev.target.files[0]);
+      return prev;
+  });}
+    
 
   const [form, setForm] = useState({
     role: "",
     company: "",
     startDate: "",
-    endDate: new Date().toString().slice(0, 10),
+    endDate: "",
     description: "",
     area: "",
   });
+
+  const handleClose = () => setShow(false);
 
   useEffect(() => {
     if (expId) {
@@ -36,10 +55,10 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
           setForm({
             role: experience.role,
             company: experience.company,
-            startDate: experience.startDate.slice(0, 10),
+            startDate: experience.startDate,
             endDate:
-              experience.endDate?.slice(0, 10) ||
-              new Date().toISOString().slice(0, 10),
+            experience.endDate?.slice(0, 10) ||
+            new Date().toISOString().slice(0, 10),
             description: experience.description,
             area: experience.area,
           });
@@ -50,31 +69,61 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    fetch(url, {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-      method: method,
-      body: JSON.stringify(form),
-    }).then((r) => {
-      if (r.ok) {
-        toast.success(expId ? "modificato" : "salvato");
-        setForm({
-          role: "",
-          company: "",
-          startDate: "",
-          endDate: new Date().toString().slice(0, 10),
-          description: "",
-          area: "",
-        });
-        handleClose();
-        getExperiences();
-      } else {
-        toast.error("oh oh riprova!");
-      }
-    });
+    if(!expId){
+      fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences`, {
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(form),
+      })
+      .then((r) => r.json())
+      .then(data => {expId = data["_id"];
+          setChecked(!checked)
+          setForm({
+            role: "",
+            company: "",
+            startDate: "",
+            endDate: new Date().toString().slice(0, 10),
+            description: "",
+            area: "",
+          });
+          uploadImg();
+          toast.success("Esperienza Aggiunta!")
+          
+    })
+    .finally(() => {
+      handleClose();
+    })
+    .catch(() => toast.error("oh oh riprova!")) 
+    } else {
+      fetch(`https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/:${expId}`, {
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        method: "PUT",
+        body: JSON.stringify(form),
+      }).then((r) => {
+        if (r.ok) {
+          uploadImg()
+          setForm({
+            role: "",
+            company: "",
+            startDate: "",
+            endDate: "",
+            description: "",
+            area: "",
+          });
+          toast.success("Esperienza Modificata!");
+          handleClose();
+        } else {
+          toast.error("oh oh riprova!");
+        }
+      });
+    }
+    
   };
 
   return (
@@ -170,11 +219,19 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
                 />
                 <Form.Check
                   type="checkbox"
-                  checked={checked}
+                  checked = {checked}
                   style={{ fontSize: "14px" }}
                   label={`Attualmente ricopro questo ruolo`}
                   onChange={() => setChecked(!checked)}
                 />
+              </Form.Group>
+            </Row>
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="photo">
+                <Form.Label>
+                  Carica la foto dell'azienda
+                </Form.Label>
+                <input type="file" onChange={handleFile} />
               </Form.Group>
             </Row>
             <FloatingLabel

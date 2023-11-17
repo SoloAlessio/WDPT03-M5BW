@@ -3,6 +3,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import * as Icon from "react-bootstrap-icons";
 import AddExperience from "../AddExperience/Index";
+import imgDefault from "./default_exp_img.png"
 
 const DateDifference = (a, b) => {
   if (a === null) {
@@ -87,9 +88,10 @@ export default function SingleExperience({
       <Col className="d-flex mb-4" md={9}>
         <div>
           <img
-            src="https://picsum.photos/48/48"
+            src={Experience.image ? Experience.image : imgDefault }
             className="rounded-circle"
             alt="experience-cover"
+            width={48} height={48}
           />
         </div>
         <div className="details ps-3">
