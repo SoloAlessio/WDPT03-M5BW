@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import { Button, Modal, FloatingLabel, Form, Row, Col } from "react-bootstrap";
 import "./AddExperience.scss";
 import { toast } from "react-toastify";
+import { ring } from "ldrs";
+import { CameraFill } from "react-bootstrap-icons";
 
 function AddExperience({ userId, show, setShow, expId, getExperiences }) {
   const [checked, setChecked] = useState(false);
   const [fd, setFd] = useState(new FormData());
-
+  const [loading, setLoading] = useState(false);
+  ring.register();
   const uploadImg = () => {
     fetch(
       `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}/picture`,
@@ -69,6 +72,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
   }, [expId, userId]);
 
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
     if (!expId) {
       fetch(
@@ -99,6 +103,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
         })
         .finally(() => {
           handleClose();
+          setLoading(false);
         })
         .catch(() => toast.error("oh oh riprova!"));
     } else {
@@ -117,8 +122,10 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
           uploadImg();
           toast.success("Esperienza Modificata!");
           handleClose();
+          setLoading(false);
         } else {
           toast.error("oh oh riprova!");
+          setLoading(false);
         }
       });
     }
@@ -143,114 +150,131 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
             .
           </p>
         </div>
-        <Modal.Body>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="Role" className="mb-3">
-              <Form.Label>Qualifica</Form.Label>
-              <Form.Control
-                required
-                type="text"
-                value={form.role}
-                autoComplete="given-name"
-                className="border rounded"
-                placeholder="Esempio: CTO"
-                onChange={(e) => {
-                  setForm({ ...form, role: e.target.value });
-                }}
-              />
-            </Form.Group>
-
-            <Row className="mb-3">
-              <Form.Group as={Col} controlId="Company">
-                <Form.Label>Nome Azienda</Form.Label>
+        <Modal.Body className={loading && "loader"}>
+          {loading ? (
+            <l-ring
+              size="40"
+              stroke="5"
+              bg-opacity="0"
+              speed="2"
+              color="#0a66c2"
+            ></l-ring>
+          ) : (
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="Role" className="mb-3">
+                <Form.Label>Qualifica</Form.Label>
                 <Form.Control
                   required
                   type="text"
-                  value={form.company}
+                  value={form.role}
                   autoComplete="given-name"
                   className="border rounded"
-                  placeholder="Esempio: EPICODE"
+                  placeholder="Esempio: CTO"
                   onChange={(e) => {
-                    setForm({ ...form, company: e.target.value });
+                    setForm({ ...form, role: e.target.value });
                   }}
                 />
               </Form.Group>
-              <Form.Group as={Col} controlId="Area">
-                <Form.Label>Località</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  className="border rounded"
-                  value={form.area}
-                  placeholder="Esempio: Milano, Roma"
-                  onChange={(e) => {
-                    setForm({ ...form, area: e.target.value });
-                  }}
-                />
-              </Form.Group>
-            </Row>
-            <Row className="mb-3">
-              <Form.Group as={Col} controlId="startDate">
-                <Form.Label className="mb-2">Inizio:</Form.Label>
-                <input
-                  type="date"
-                  className="d-block w-50 mb-2 p-2 rounded border"
-                  required
-                  value={form.startDate}
-                  id="startDate"
-                  onChange={(e) => {
-                    setForm({ ...form, startDate: e.target.value });
-                  }}
-                />
-              </Form.Group>
-              <Form.Group as={Col} controlId="endDate">
-                <Form.Label className="mb-2 ">Fine:</Form.Label>
-                <input
-                  type="date"
-                  className="d-block w-50 mb-2 p-2 rounded border"
-                  disabled={checked}
-                  id="endDate"
-                  value={checked ? "" : form.endDate}
-                  onChange={(e) => {
-                    setForm({ ...form, endDate: e.target.value });
-                  }}
-                />
-                <Form.Check
-                  type="checkbox"
-                  checked={checked}
-                  style={{ fontSize: "14px" }}
-                  label={`Attualmente ricopro questo ruolo`}
-                  onChange={() => setChecked(!checked)}
-                />
-              </Form.Group>
-            </Row>
-            <Row className="mb-3">
-              <Form.Group as={Col} controlId="photo">
-                <Form.Label>Carica la foto dell'azienda</Form.Label>
-                <input className="d-block" type="file" onChange={handleFile} />
-              </Form.Group>
-            </Row>
-            <FloatingLabel
-              controlId="Description"
-              label="Describe your Experience"
-              className="mb-3"
-            >
-              <Form.Control
-                as="textarea"
-                placeholder="Leempio:ve a comment here"
-                style={{ height: "100px" }}
-                value={form.description}
-                required
-                onChange={(e) =>
-                  setForm({ ...form, description: e.target.value })
-                }
-              />
-            </FloatingLabel>
 
-            <Button className="rounded-2 py-2 w-100 btn-blue" type="submit">
-              {!expId ? "Aggiungi Esperienza" : "Modifica Esperienza"}
-            </Button>
-          </Form>
+              <Row className="mb-3">
+                <Form.Group as={Col} controlId="Company">
+                  <Form.Label>Nome Azienda</Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    value={form.company}
+                    autoComplete="given-name"
+                    className="border rounded"
+                    placeholder="Esempio: EPICODE"
+                    onChange={(e) => {
+                      setForm({ ...form, company: e.target.value });
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group as={Col} controlId="Area">
+                  <Form.Label>Località</Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    className="border rounded"
+                    value={form.area}
+                    placeholder="Esempio: Milano, Roma"
+                    onChange={(e) => {
+                      setForm({ ...form, area: e.target.value });
+                    }}
+                  />
+                </Form.Group>
+              </Row>
+              <Row className="mb-3">
+                <Form.Group as={Col} controlId="startDate">
+                  <Form.Label className="mb-2">Inizio:</Form.Label>
+                  <input
+                    type="date"
+                    className="d-block w-50 mb-2 p-2 rounded border"
+                    required
+                    value={form.startDate}
+                    id="startDate"
+                    onChange={(e) => {
+                      setForm({ ...form, startDate: e.target.value });
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group as={Col} controlId="endDate">
+                  <Form.Label className="mb-2 ">Fine:</Form.Label>
+                  <input
+                    type="date"
+                    className="d-block w-50 mb-2 p-2 rounded border"
+                    disabled={checked}
+                    id="endDate"
+                    value={checked ? "" : form.endDate}
+                    onChange={(e) => {
+                      setForm({ ...form, endDate: e.target.value });
+                    }}
+                  />
+                  <Form.Check
+                    type="checkbox"
+                    checked={checked}
+                    style={{ fontSize: "14px" }}
+                    label={`Attualmente ricopro questo ruolo`}
+                    onChange={() => setChecked(!checked)}
+                  />
+                </Form.Group>
+              </Row>
+              <Row className="mb-3">
+                <Form.Group as={Col} controlId="photo" className="AggExp-img">
+                  <label className="custom-file-upload">
+                    <input type="file" onChange={handleFile} />
+                    <div className="d-flex flex-column align-items-center">
+                      <CameraFill size={20} />
+                      <p className="fw-medium m-0">Cambia Foto</p>
+                    </div>
+                  </label>
+                </Form.Group>
+              </Row>
+              <Form.Group>
+                <FloatingLabel
+                  controlId="Description"
+                  label="Describe your Experience"
+                  className="mb-3"
+                >
+                  <Form.Control
+                    as="textarea"
+                    placeholder="Leempio:ve a comment here"
+                    style={{ height: "100px" }}
+                    value={form.description}
+                    required
+                    onChange={(e) =>
+                      setForm({ ...form, description: e.target.value })
+                    }
+                  />
+                </FloatingLabel>
+              </Form.Group>
+
+              <Button className="rounded-2 py-2 w-100 btn-blue" type="submit">
+                {!expId ? "Aggiungi Esperienza" : "Modifica Esperienza"}
+              </Button>
+            </Form>
+          )}
         </Modal.Body>
       </Modal>
     </>
