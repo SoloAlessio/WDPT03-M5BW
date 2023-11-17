@@ -13,7 +13,7 @@ import {
 import { Link } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
 import "./navbar.scss";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function NavBar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -39,6 +39,26 @@ export default function NavBar() {
       )
     );
   }
+
+  const [myProfile, setMyProfile] = useState("");
+
+  const getMyProfile = useCallback(() => {
+    fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+      },
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        setMyProfile(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    getMyProfile();
+  }, [getMyProfile]);
+
+  console.log(myProfile);
 
   return (
     <Navbar sticky="top" expand="lg" bg="light">
@@ -179,52 +199,32 @@ export default function NavBar() {
                 id="dropdown-menu-align-responsive-1"
                 className="nav-dropdown-no-decoration"
               >
-                <Container fluid>
-                  <Link to={`/`} className="no-dec dropdown-item">
-                    <Row className="align-items-center mb-2">
-                      <Col xs="auto" className="ps-0">
-                        <img
-                          width="50rem"
-                          height="50rem"
-                          src="https://picsum.photos/48/48"
-                          className="rounded-circle"
-                          alt="experience-cover"
-                        />
-                      </Col>
-                      <Col className="mb-2 px-0">
-                        <h6 className="mb-0 fw-semibold">nome</h6>
-                        <p className="mb-0 text-secondary fs-7">
-                          esperienza/ruolo
-                        </p>
-                      </Col>
-                    </Row>
-                  </Link>
-                  <Row>
-                    <Col>
-                      <Button className="rounded-pill fw-semibold btn-white w-100">
-                        Visualizza profilo
-                      </Button>
+                <Link to={`/profile`} className="dropdown-item">
+                  <Row className="d-flex">
+                    <Col xs={2}>
+                      <img
+                        width="50rem"
+                        height="50rem"
+                        src={myProfile.image}
+                        className="rounded-circle"
+                        alt="experience-cover"
+                      />
+                    </Col>
+                    <Col xs={9} className="ms-2">
+                      <h5 className="mb-0">
+                        {myProfile.name} {myProfile.surname}
+                      </h5>
+                      <p className="mb-2">{myProfile.title}</p>
                     </Col>
                   </Row>
                 </Container>
 
                 <NavDropdown.Divider />
-
-                <Container className="px-4">
-                  <h6 className="py-2">Account</h6>
-                  <div className="d-flex mb-2 align-items-center">
-                    <div
-                      style={{
-                        height: "20px",
-                        width: "20px",
-                        backgroundImage:
-                          "conic-gradient(from -45deg, #f8c77e 180deg, #e7a33e 0)",
-                      }}
-                      className="rounded-1"
-                    />
-                    <Dropdown.Item href="/wip" className="fs-7">
-                      Riattiva Premium
-                    </Dropdown.Item>
+                <Container>
+                  <h5 className="ms-2">Account</h5>
+                  <div className="d-flex">
+                    <Button variant="warning" className="p-3 ms-2"></Button>
+                    <Dropdown.Item href="/wip">Riattiva Premium</Dropdown.Item>
                   </div>
                   <div className="d-flex flex-column">
                     <Dropdown.Item href="/wip" className="px-0 fs-7">
@@ -240,16 +240,10 @@ export default function NavBar() {
                 </Container>
 
                 <NavDropdown.Divider />
-
-                <Container className="px-4">
-                  <h6 className="py-2">Gestisci</h6>
-                  <Dropdown.Item href="/wip" className="px-0 fs-7">
-                    Post e attività
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    href="/wip"
-                    className="text-truncate px-0 fs-7"
-                  >
+                <Container>
+                  <h5 className="ms-2">Gestisci</h5>
+                  <Dropdown.Item href="/wip">Post e attività</Dropdown.Item>
+                  <Dropdown.Item href="/wip" className="text-truncate">
                     Account per la pubblicazione di offer..
                   </Dropdown.Item>
                   <Dropdown.Item href="/wip" className="px-0 fs-7">
