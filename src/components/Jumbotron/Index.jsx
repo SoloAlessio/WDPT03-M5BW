@@ -25,7 +25,7 @@ export default function Jumbotron({ myProfile, getMyProfile, myId }) {
             alt="link_back"
             className="rounded-top-3"
           />
-          <div className="jumbotron_camera">
+          <div className="jumbotron_camera" onClick={myId === myProfile["_id"] ? handleShow : handleClose} >
             <CameraFill />
           </div>
         </Col>
@@ -48,9 +48,7 @@ export default function Jumbotron({ myProfile, getMyProfile, myId }) {
               </div>
             )}
           </div>
-          <Button variant="light" className="rounded-circle">
-            <Pencil />
-          </Button>
+          
         </Col>
         <Col xs={12} className="mt-4">
           <h3 style={{ marginBottom: 0 }}>
