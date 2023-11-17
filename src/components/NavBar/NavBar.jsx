@@ -199,7 +199,7 @@ export default function NavBar() {
                 id="dropdown-menu-align-responsive-1"
                 className="nav-dropdown-no-decoration"
               >
-                <Link to={`/profile`} className="dropdown-item">
+                <Nav.Link to={`/profile`} className="dropdown-item">
                   <Row className="d-flex">
                     <Col xs={2}>
                       <img
@@ -217,7 +217,7 @@ export default function NavBar() {
                       <p className="mb-2">{myProfile.title}</p>
                     </Col>
                   </Row>
-                </Container>
+                </Nav.Link>
 
                 <NavDropdown.Divider />
                 <Container>
