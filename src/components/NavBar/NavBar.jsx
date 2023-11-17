@@ -198,7 +198,7 @@ export default function NavBar() {
                 className="nav-dropdown-no-decoration"
               >
                 <Container fluid>
-                  <Link to={`/`} className="no-dec dropdown-item">
+                  <Link to={`/`} className="text-decoration-none dropdown-item">
                     <Row className="align-items-center mb-2">
                       <Col xs="auto" className="ps-0">
                         <img
