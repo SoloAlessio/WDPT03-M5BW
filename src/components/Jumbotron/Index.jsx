@@ -1,5 +1,5 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { Pencil, CameraFill } from "react-bootstrap-icons";
+import { CameraFill } from "react-bootstrap-icons";
 import "./jumbotron.scss";
 import { useState } from "react";
 import ModifyImg from "./ModifyImg.jsx";
