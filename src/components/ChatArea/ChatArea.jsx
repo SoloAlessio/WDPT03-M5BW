@@ -19,7 +19,7 @@ export default function ChatArea() {
           />
         </Col>
         <Col className="ps-0">
-          <p className="mb-0 fw-semibold pe-5">Messagistica</p>
+          <p className="mb-0 fw-semibold pe-5">Messaggi</p>
         </Col>
         <Col>
           <Icon.ThreeDots />
