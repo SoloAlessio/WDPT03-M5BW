@@ -122,6 +122,7 @@ export default function SingleExperience({
             show={show}
             setShow={setShow}
             expId={Experience._id}
+            getExperiences={getExperiences}
           />
           <Button variant="light" onClick={() => setShow(true)}>
             <Icon.PencilFill />

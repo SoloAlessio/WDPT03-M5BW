@@ -55,7 +55,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
           setForm({
             role: experience.role,
             company: experience.company,
-            startDate: experience.startDate,
+            startDate: experience.startDate.slice(0, 10),
             endDate:
             experience.endDate?.slice(0, 10) ||
             new Date().toISOString().slice(0, 10),
