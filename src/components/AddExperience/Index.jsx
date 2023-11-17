@@ -8,7 +8,7 @@ import { CameraFill } from "react-bootstrap-icons";
 function AddExperience({ userId, show, setShow, expId, getExperiences }) {
   const [checked, setChecked] = useState(false);
   const [fd, setFd] = useState(new FormData());
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   ring.register();
   const uploadImg = () => {
     fetch(
@@ -72,7 +72,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
   }, [expId, userId]);
 
   const handleSubmit = (e) => {
-    setLoading(true)
+    setLoading(true);
     e.preventDefault();
     if (!expId) {
       fetch(
@@ -103,7 +103,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
         })
         .finally(() => {
           handleClose();
-          setLoading(false)
+          setLoading(false);
         })
         .catch(() => toast.error("oh oh riprova!"));
     } else {
@@ -122,14 +122,13 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
           uploadImg();
           toast.success("Esperienza Modificata!");
           handleClose();
-          setLoading(false)
+          setLoading(false);
         } else {
           toast.error("oh oh riprova!");
-          setLoading(false)
+          setLoading(false);
         }
       });
     }
-    
   };
 
   return (
@@ -152,14 +151,16 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
           </p>
         </div>
         <Modal.Body className={loading && "loader"}>
-          {loading ? <l-ring
-                  size="40"
-                  stroke="5"
-                  bg-opacity="0"
-                  speed="2"
-                  color="#0a66c2"
-                ></l-ring>
-              : <Form onSubmit={handleSubmit}>
+          {loading ? (
+            <l-ring
+              size="40"
+              stroke="5"
+              bg-opacity="0"
+              speed="2"
+              color="#0a66c2"
+            ></l-ring>
+          ) : (
+            <Form onSubmit={handleSubmit}>
               <Form.Group controlId="Role" className="mb-3">
                 <Form.Label>Qualifica</Form.Label>
                 <Form.Control
@@ -174,7 +175,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
                   }}
                 />
               </Form.Group>
-  
+
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="Company">
                   <Form.Label>Nome Azienda</Form.Label>
@@ -241,38 +242,39 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
               </Row>
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="photo" className="AggExp-img">
-                <label className="custom-file-upload">
-              <input type="file" onChange={handleFile} />
-              <div className="d-flex flex-column align-items-center">
-                    <CameraFill size={20} />
-                    <p className="fw-medium m-0">Cambia Foto</p>
-              </div>
-              </label>
-                  
+                  <label className="custom-file-upload">
+                    <input type="file" onChange={handleFile} />
+                    <div className="d-flex flex-column align-items-center">
+                      <CameraFill size={20} />
+                      <p className="fw-medium m-0">Cambia Foto</p>
+                    </div>
+                  </label>
                 </Form.Group>
               </Row>
-              <FloatingLabel
-                controlId="Description"
-                label="Describe your Experience"
-                className="mb-3"
-              >
-                <Form.Control
-                  as="textarea"
-                  placeholder="Leempio:ve a comment here"
-                  style={{ height: "100px" }}
-                  value={form.description}
-                  required
-                  onChange={(e) =>
-                    setForm({ ...form, description: e.target.value })
-                  }
-                />
-              </FloatingLabel>
-  
+              <Form.Group>
+                <FloatingLabel
+                  controlId="Description"
+                  label="Describe your Experience"
+                  className="mb-3"
+                >
+                  <Form.Control
+                    as="textarea"
+                    placeholder="Leempio:ve a comment here"
+                    style={{ height: "100px" }}
+                    value={form.description}
+                    required
+                    onChange={(e) =>
+                      setForm({ ...form, description: e.target.value })
+                    }
+                  />
+                </FloatingLabel>
+              </Form.Group>
+
               <Button className="rounded-2 py-2 w-100 btn-blue" type="submit">
-                {expId ? "Modifica Esperienza" : "Aggiungi Esperienza"}
+                {!expId ? "Aggiungi Esperienza" : "Modifica Esperienza"}
               </Button>
-            </Form> }
-          
+            </Form>
+          )}
         </Modal.Body>
       </Modal>
     </>

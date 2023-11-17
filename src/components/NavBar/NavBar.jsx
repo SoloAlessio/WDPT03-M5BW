@@ -198,7 +198,7 @@ export default function NavBar() {
                 className="nav-dropdown-no-decoration"
               >
                 <Container fluid>
-                  <Link to={`/`} className="no-dec dropdown-item">
+                  <Link to={`/`} className="text-decoration-none dropdown-item">
                     <Row className="align-items-center mb-2">
                       <Col xs="auto" className="ps-0">
                         <img
@@ -294,11 +294,8 @@ export default function NavBar() {
                 id="navbarScrollingDropdown"
                 align={{ sm: "end" }}
               >
-                <NavDropdown.Item href="/wip">Action</NavDropdown.Item>
-                <NavDropdown.Item href="/wip">Another action</NavDropdown.Item>
-                <NavDropdown.Divider />
                 <NavDropdown.Item href="/wip">
-                  Something else here
+                  Passa a Linkedin Enterprise
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav.Item>
