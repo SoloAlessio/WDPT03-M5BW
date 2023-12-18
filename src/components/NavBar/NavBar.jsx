@@ -270,7 +270,7 @@ export default function NavBar() {
                     href="/wip"
                     className="text-truncate px-0 fs-7"
                   >
-                    Account per la pubblicazione di offer..
+                    Account per la pubblicazione di off...
                   </Dropdown.Item>
                   <Dropdown.Item href="/wip" className="px-0 fs-7">
                     Lingua
