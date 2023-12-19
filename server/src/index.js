@@ -9,6 +9,8 @@ import multer from "multer"
 
 const server = express()
 
+server.use(cors())
+
 const port = process.env.PORT || 3030
 server.use(express.json())
 
