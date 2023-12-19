@@ -280,7 +280,7 @@ export default function NavBar() {
                 <NavDropdown.Divider />
 
                 <Container className="px-4">
-                  <Dropdown.Item href="/wip" className="px-0">
+                  <Dropdown.Item href="/wip" className="px-0"> {/*<!--inserire il logout--> */}
                     Esci
                   </Dropdown.Item>
                 </Container>
