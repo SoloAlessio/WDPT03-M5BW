@@ -5,11 +5,50 @@ import bcrypt from "bcrypt"
 import { User } from "./models/users.js"
 import jwt from "jsonwebtoken"
 import checkJwt from "./middlewares/checkJwt.js"
+import multer from "multer"
 
 const server = express()
 
 const port = process.env.PORT || 3030
 server.use(express.json())
+
+//Configuro Multer per poter caricare i file
+const storage = multer.diskStorage({
+  destination: "./uploads",
+  filename: function (req, file, callback) {
+    if (["image/jpeg", "image/png"].includes(file.mimetype)) {
+      callback(null, `${Date.now()}_${file.originalname}`)
+    } else {
+      const error = new Error("Please upload png or jpg")
+      error.statusCode = 500
+      callback(error)
+    }
+  },
+})
+
+const upload = multer({ storage })
+
+//Questa PUT permete di caricare una singola immagine sul server nella cartella uploads
+//
+server.put(
+  "/:id/image",
+  // checkJwt, serve?
+  upload.single("avatar"),
+  async (req, res, next) => {
+    try {
+      if (req.file) {
+        console.log(req.file.path) // Stampa il percorso dove viene salvato il file
+        res
+          .status(200)
+          .json({ message: "Immagine caricata!", path: req.file.path })
+      } else {
+        res.status(400).json({ message: "No file uploaded" })
+      }
+    } catch (error) {
+      next(error) // Passa eventuali errori al middleware di gestione degli errori
+    }
+  }
+)
 
 //ROUTE DI TEST PER VEDERE SE IL SERVER E' VIVO
 server.get("/health", (req, res) => {
@@ -53,7 +92,7 @@ server.get("/profile", async (req, res, next) => {
 
 //Questo GET ritorna il profile dell'utente LOGGATO. Qui viene controllato il token
 //Requisiti: serve il token nelle Authorization!
-//Requisiti body: nessuno, se ne occupa il mdw checkJwt ad estrarre le info dal Token
+//Requisiti body: nessuno, se ne occupa il mdw checkJwt ad estrarre le info dal Token e metterle in req.user
 server.get("/me", checkJwt, async (req, res, next) => {
   try {
     // Qui, req.user è già stato impostato dal middleware checkJwt
@@ -62,6 +101,9 @@ server.get("/me", checkJwt, async (req, res, next) => {
     next(err)
   }
 })
+
+//Questo POST carica l'immagine di profilo
+server.post
 
 mongoose.connect(process.env.MONGO_URL).then(() => {
   server.listen(port, () => {
