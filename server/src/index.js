@@ -28,12 +28,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage })
 
-//Questa PUT permete di caricare una singola immagine sul server nella cartella uploads
-//
+//Questa PUT permete di caricare una singola immagine sul server nella cartella uploads se si ha il token!
+//Requisiti: id e Token
 server.put(
   "/:id/image",
-  // checkJwt, serve?
-  upload.single("avatar"),
+  checkJwt,
+  upload.single("profile-img"),
   async (req, res, next) => {
     try {
       if (req.file) {
