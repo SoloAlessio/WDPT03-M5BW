@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
   destination: "./uploads",
   filename: function (req, file, callback) {
     if (["image/jpeg", "image/png"].includes(file.mimetype)) {
-      callback(null, `${Date.now()}_${file.originalname}`)
+      callback(null, `${Date.now()}_${file.originalname}`) //fare con id req.params.id
     } else {
       const error = new Error("Please upload png or jpg")
       error.statusCode = 500
@@ -30,6 +30,7 @@ const upload = multer({ storage })
 
 //Questa PUT permete di caricare una singola immagine sul server nella cartella uploads se si ha il token!
 //Requisiti: id e Token
+//patch
 server.put(
   "/:id/image",
   checkJwt,
@@ -90,6 +91,8 @@ server.get("/profile", async (req, res, next) => {
   }
 })
 
+//sempre nomi plurale, seguire insiemi
+
 //Questo GET ritorna il profile dell'utente LOGGATO. Qui viene controllato il token
 //Requisiti: serve il token nelle Authorization!
 //Requisiti body: nessuno, se ne occupa il mdw checkJwt ad estrarre le info dal Token e metterle in req.user
@@ -101,9 +104,6 @@ server.get("/me", checkJwt, async (req, res, next) => {
     next(err)
   }
 })
-
-//Questo POST carica l'immagine di profilo
-server.post
 
 mongoose.connect(process.env.MONGO_URL).then(() => {
   server.listen(port, () => {
