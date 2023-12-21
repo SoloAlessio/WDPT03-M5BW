@@ -5,18 +5,12 @@ import { useNavigate } from 'react-router-dom';
 const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [allProfile, setAllProfile] = useState('');
-    const [dataauth, setdataauth] = useState('')
-    const navigate=useNavigate("")
+    const navigate = useNavigate("")
 
-    const handleLogin = async (e)=> {
+    const handleLogin = async (e) => {
         e.preventDefault()
         //inserire controllo campi vuoti
         //qui inseriremo il nostro server
-        await fetch("http://localhost:3030/api/profiles", {  //cerco se l'utente è registrato
-        })
-            .then((r) => r.json())
-            .then(setAllProfile)
 
         if (allProfile) { 
             const user = allProfile.find((e) => e.email === email)
@@ -73,7 +67,7 @@ const LoginForm = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </Form.Group>
-                        
+
                         <Button variant="primary" type="submit">
                             Login
                         </Button>
