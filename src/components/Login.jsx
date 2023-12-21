@@ -5,46 +5,34 @@ import { useNavigate } from 'react-router-dom';
 const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [allProfile, setAllProfile] = useState('');
-    const [dataauth, setdataauth] = useState('')
-    const navigate=useNavigate("")
+    const navigate = useNavigate("")
 
-    const handleLogin = async (e)=> {
+    const handleLogin = async (e) => {
         e.preventDefault()
         //inserire controllo campi vuoti
         //qui inseriremo il nostro server
-        await fetch("http://localhost:3030/api/profiles", {  //cerco se l'utente è registrato
-        })
-            .then((r) => r.json())
-            .then(setAllProfile)
 
-        if (allProfile) { 
-            const user = allProfile.find((e) => e.email === email)
-            console.log(user)
-            if (user) {
-                fetch("http://localhost:3030/api/profiles/login", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        email,
-                        password,
-                    }),
-                }).then((r) => r.json())
-                    .then(setdataauth)
-                console.log(dataauth.token)
-                if (dataauth) {
-                    // localStorage.setItem("userId", userId)
-                    localStorage.setItem("token", dataauth.token)
-                    navigate("/")
-                }
-            }
-            else {
-                alert("Nessun utente trovato, registrati!")
-            }
-        } else {
-            alert("Non ho trovato utenti nel db - allProfile vuoto")
+        const response = await fetch("http://localhost:3030/api/profiles/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email,
+                password,
+            }),
+        })
+
+        const data = await response.json()
+
+        console.log(data)
+        if (data) {
+            // localStorage.setItem("userId", userId)
+            localStorage.setItem("token", data.token)
+            navigate("/")
+        }
+        else {
+            alert("nessun token")
         }
     };
 
@@ -73,7 +61,7 @@ const LoginForm = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </Form.Group>
-                        
+
                         <Button variant="primary" type="submit">
                             Login
                         </Button>
