@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import WorkInProgress from "./components/WorkInProgress";
 import ChatArea from "./components/ChatArea/ChatArea";
 import LoginForm from "./components/Login";
+import RegistrationForm from "./components/Registration";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/wip" element={<WorkInProgress />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/login" element={<LoginForm />}/>
+          <Route path="/registration" element={<RegistrationForm />}/>
         </Routes>
         <MyFooter />
         <ChatArea />
