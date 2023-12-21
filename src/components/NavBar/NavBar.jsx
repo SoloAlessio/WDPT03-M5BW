@@ -14,15 +14,17 @@ import { Link } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
 import "./navbar.scss";
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export default function NavBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [profiles, setprofiles] = useState([]);
   const [filteredProfiles, setFilteredProfiles] = useState([]);
   const token = localStorage.getItem("token")
+  const navigate = useNavigate("")
 
   useEffect(() => {
-    fetch("http://localhost:3030/api/profile", {
+    fetch("http://localhost:3030/api/profiles", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -42,6 +44,12 @@ export default function NavBar() {
   }
 
   const [myProfile, setMyProfile] = useState("");
+
+  const clearLocalStorage = () => {
+    localStorage.clear();
+    navigate("/")
+    
+  };
 
   const getMyProfile = useCallback(() => {
     fetch("http://localhost:3030/api/profiles/me", {
@@ -129,7 +137,7 @@ export default function NavBar() {
             {/* Notifications */}
             <Nav.Item>
               <Link
-                to={`/profile`}
+                to={token === null ? "/" : `/profile`}
                 className="d-flex flex-column align-items-center justify-content-between nav-link active"
               >
                 <div className="position-relative">
@@ -222,7 +230,7 @@ export default function NavBar() {
                   </Link>
                   <Row>
                     <Col>
-                      <Link to={"/login"}>
+                      <Link to={token === null ? "/" : `/profile`}>
                       <Button className="rounded-pill fw-semibold btn-white w-100">
                         Visualizza profilo
                       </Button>
@@ -283,8 +291,9 @@ export default function NavBar() {
                 <NavDropdown.Divider />
 
                 <Container className="px-4">
-                  <Dropdown.Item href="/wip" className="px-0"> {/*<!--inserire il logout--> */}
-                    Esci
+                  <Dropdown.Item className="px-0"> {/*<!--inserire il logout--> */}
+                  <Button onClick={clearLocalStorage}>Esci</Button>
+                    
                   </Dropdown.Item>
                 </Container>
               </NavDropdown>

@@ -13,14 +13,14 @@ function ModifyImg({ myProfile, getMyProfile, show, setShow }) {
   
   const handleFile = (ev) => {
     setFd((prev) => {
-      prev.delete("profile");
-      prev.append("profile", ev.target.files[0]);
+      prev.delete("profile-img");
+      prev.append("profile-img", ev.target.files[0]);
       return prev;
     });
     ev.preventDefault();
     setLoading(true);
     fetch(
-      `http://localhost:3030/api/profiles/${myProfile["_id"]}/picture`,
+      `http://localhost:3030/api/profiles/${myProfile["_id"]}/image`,
       {
         method: "PATCH",
         body: fd,
