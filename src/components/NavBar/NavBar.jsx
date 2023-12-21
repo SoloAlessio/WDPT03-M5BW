@@ -221,9 +221,11 @@ export default function NavBar() {
                   </Link>
                   <Row>
                     <Col>
+                      <Link to={"/login"}>
                       <Button className="rounded-pill fw-semibold btn-white w-100">
                         Visualizza profilo
                       </Button>
+                      </Link>
                     </Col>
                   </Row>
                 </Container>
