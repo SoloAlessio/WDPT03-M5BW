@@ -9,6 +9,7 @@ import ProfileDetail from "./components/ProfileDetail";
 import { ToastContainer } from "react-toastify";
 import WorkInProgress from "./components/WorkInProgress";
 import ChatArea from "./components/ChatArea/ChatArea";
+import LoginForm from "./components/Login";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/profile/:id" element={<ProfileDetail />} />
           <Route path="/wip" element={<WorkInProgress />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/login" element={<LoginForm />}/>
         </Routes>
         <MyFooter />
         <ChatArea />
