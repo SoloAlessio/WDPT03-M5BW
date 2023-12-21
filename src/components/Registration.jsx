@@ -35,6 +35,7 @@ const RegistrationForm = () => {
         })
         if (resp.ok) {
             alert("Utente registrato!")
+            
         }
     };
 

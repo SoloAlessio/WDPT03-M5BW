@@ -19,7 +19,6 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/Profile" element={<Main />} />
           <Route path="/profile/:id" element={<ProfileDetail />} />
           <Route path="/wip" element={<WorkInProgress />} />
           <Route path="*" element={<NotFound />} />
