@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
+import { Container, Form, Row, Col, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [allProfile, setAllProfile] = useState('');
-    const [token,setToken]=useState('')
+    const [dataauth, setdataauth] = useState('')
+    const navigate=useNavigate("")
 
-    const handleLogin=function(e) {
+    const handleLogin = async (e)=> {
         e.preventDefault()
         //inserire controllo campi vuoti
         //qui inseriremo il nostro server
-        fetch("http://localhost:3030/api/profiles", {  //cerco se l'utente è registrato
+        await fetch("http://localhost:3030/api/profiles", {  //cerco se l'utente è registrato
         })
             .then((r) => r.json())
             .then(setAllProfile)
 
-        if (allProfile) {
+        if (allProfile) { 
             const user = allProfile.find((e) => e.email === email)
             console.log(user)
             if (user) {
@@ -29,12 +32,13 @@ const LoginForm = () => {
                         password,
                     }),
                 }).then((r) => r.json())
-                    .then(setToken)
-                    console.log(token)
-                    if (token) {
-                        // localStorage.setItem("userId", userId)
-                        localStorage.setItem("token", token)
-                     }
+                    .then(setdataauth)
+                console.log(dataauth.token)
+                if (dataauth) {
+                    // localStorage.setItem("userId", userId)
+                    localStorage.setItem("token", dataauth.token)
+                    navigate("/")
+                }
             }
             else {
                 alert("Nessun utente trovato, registrati!")
@@ -45,36 +49,38 @@ const LoginForm = () => {
     };
 
     return (
-        <div className="container mt-5">
-            <h2>Login</h2>
-            <form>
-                <div className="form-group">
-                    <label>Email address</label>
-                    <input
-                        type="email"
-                        className="form-control"
-                        placeholder="Enter email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-
-                <button type="button" className="btn btn-primary" onClick={handleLogin}>
-                    Login
-                </button>
-            </form>
-        </div>
+        <Container>
+            <Row>
+                <Col xs={12} md={6}>
+                    <Form onSubmit={handleLogin}>
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control
+                                type="email"
+                                placeholder="Inserisci la tua email"
+                                name="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Inserisci la tua password"
+                                name="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </Form.Group>
+                        
+                        <Button variant="primary" type="submit">
+                            Login
+                        </Button>
+                    </Form>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 
