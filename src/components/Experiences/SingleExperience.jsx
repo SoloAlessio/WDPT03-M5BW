@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import * as Icon from "react-bootstrap-icons";
 import AddExperience from "../AddExperience/Index";
 import imgDefault from "./default_exp_img.png";
+const token = localStorage.getItem("token")
 
 const DateDifference = (a, b) => {
   if (a === null) {
@@ -62,10 +63,10 @@ export default function SingleExperience({
     }
     try {
       let response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${experienceId}`,
+        `http://localhost:3030/api/profiles/${userId}/experiences/${experienceId}`,
         {
           headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+            Authorization: `Bearer ${token}`,
           },
           method: "DELETE",
         }

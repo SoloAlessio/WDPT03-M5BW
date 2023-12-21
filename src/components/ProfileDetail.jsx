@@ -8,28 +8,29 @@ export default function ProfileDetail() {
   const [myProfile, setMyProfile] = useState({});
   const { id } = useParams();
   const [myId, setMyId] = useState("");
+  const token = localStorage.getItem("token")
 
   const getMyProfile = useCallback(() => {
-    fetch(`https://striveschool-api.herokuapp.com/api/profile/${id}`, {
+    fetch(`http://localhost:3030/api/profiles/${id}`, {
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((r) => r.json())
       .then(setMyProfile);
-  }, [id]);
+  }, [id, token]);
 
   const getMyPersonalProfile = useCallback(() => {
-    fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
+    fetch("http://localhost:3030/api/profiles/me", {
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((r) => r.json())
       .then((data) => {
         setMyId(data["_id"]);
       });
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     getMyProfile();

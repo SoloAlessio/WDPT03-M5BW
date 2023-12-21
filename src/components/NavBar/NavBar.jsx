@@ -19,16 +19,17 @@ export default function NavBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [profiles, setprofiles] = useState([]);
   const [filteredProfiles, setFilteredProfiles] = useState([]);
+  const token = localStorage.getItem("token")
 
   useEffect(() => {
-    fetch("https://striveschool-api.herokuapp.com/api/profile", {
+    fetch("http://localhost:3030/api/profile", {
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((r) => r.json())
       .then(setprofiles);
-  }, []);
+  }, [token]);
 
   function Filter() {
     setFilteredProfiles(
@@ -43,16 +44,16 @@ export default function NavBar() {
   const [myProfile, setMyProfile] = useState("");
 
   const getMyProfile = useCallback(() => {
-    fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
+    fetch("http://localhost:3030/api/profiles/me", {
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((r) => r.json())
       .then((data) => {
         setMyProfile(data);
       });
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     getMyProfile();
@@ -63,7 +64,7 @@ export default function NavBar() {
       <Container>
         {/* NAVBAR Icon */}
         <Navbar.Brand className="me-2">
-          <Link to={"/Profile"}>
+          <Link to={token ? "/profile" : "/"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -128,7 +129,7 @@ export default function NavBar() {
             {/* Notifications */}
             <Nav.Item>
               <Link
-                to={`/`}
+                to={`/profile`}
                 className="d-flex flex-column align-items-center justify-content-between nav-link active"
               >
                 <div className="position-relative">

@@ -10,7 +10,7 @@ function WorkInProgress() {
     >
       <Container>
         <Linkedin size={100} color="#0a66c2" />
-        <h5 className="mt-3">Work in progress... please be patient!</h5>
+        <h5 className="mt-3">Work in progress.. please be patient!</h5>
       </Container>
     </Container>
   );
