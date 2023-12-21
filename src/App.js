@@ -18,12 +18,11 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/Profile" element={<Main />} />
+          <Route path="/" element={<LoginForm />} />
+          <Route path="/profile" element={<Main />} />
           <Route path="/profile/:id" element={<ProfileDetail />} />
           <Route path="/wip" element={<WorkInProgress />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/login" element={<LoginForm />}/>
           <Route path="/registration" element={<RegistrationForm />}/>
         </Routes>
         <MyFooter />

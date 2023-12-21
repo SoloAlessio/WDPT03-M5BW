@@ -11,11 +11,12 @@ export default function Main() {
   const [allProfiles, setAllProfiles] = useState("");
   const [myProfile, setMyProfile] = useState("");
   const [myId, setMyId] = useState("");
+  const token = localStorage.getItem("token")
 
   const getMyProfile = useCallback(() => {
-    fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
+    fetch("http://localhost:3030/api/profiles/me", {
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((r) => r.json())
@@ -24,14 +25,14 @@ export default function Main() {
         setMyId(data["_id"]);
       });
 
-    fetch("https://striveschool-api.herokuapp.com/api/profile", {
+    fetch("http://localhost:3030/api/profiles", {
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((r) => r.json())
       .then(setAllProfiles);
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     getMyProfile();

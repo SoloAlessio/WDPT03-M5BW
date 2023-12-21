@@ -37,7 +37,7 @@ const LoginForm = () => {
                 if (dataauth) {
                     // localStorage.setItem("userId", userId)
                     localStorage.setItem("token", dataauth.token)
-                    navigate("/")
+                    navigate("/profile")
                 }
             }
             else {

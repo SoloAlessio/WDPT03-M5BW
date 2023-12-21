@@ -9,7 +9,8 @@ function ModifyImg({ myProfile, getMyProfile, show, setShow }) {
   const handleClose = () => setShow(false);
   const [fd, setFd] = useState(new FormData());
   const [loading, setLoading] = useState(false)
-
+  const token = localStorage.getItem("token")
+  
   const handleFile = (ev) => {
     setFd((prev) => {
       prev.delete("profile");
@@ -19,12 +20,12 @@ function ModifyImg({ myProfile, getMyProfile, show, setShow }) {
     ev.preventDefault();
     setLoading(true);
     fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${myProfile["_id"]}/picture`,
+      `http://localhost:3030/api/profiles/${myProfile["_id"]}/picture`,
       {
-        method: "POST",
+        method: "PATCH",
         body: fd,
         headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     ).then((response) => {
