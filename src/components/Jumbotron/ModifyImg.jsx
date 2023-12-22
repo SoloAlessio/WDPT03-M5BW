@@ -20,7 +20,7 @@ function ModifyImg({ myProfile, getMyProfile, show, setShow }) {
     ev.preventDefault();
     setLoading(true);
     fetch(
-      `http://localhost:3030/api/profiles/${myProfile["_id"]}/image`,
+      `https://server-linkedin-project-test.onrender.com/api/profiles/${myProfile["_id"]}/image`,
       {
         method: "PATCH",
         body: fd,

@@ -13,7 +13,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
   ring.register();
   const uploadImg = () => {
     fetch(
-      `http://localhost:3030/api/profiles/${userId}/experiences/${expId}/image`,
+      `https://server-linkedin-project-test.onrender.com/api/profiles/${userId}/experiences/${expId}/image`,
       {
         method: "PATCH",
         body: fd,
@@ -48,7 +48,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
   useEffect(() => {
     if (expId) {
       fetch(
-        `http://localhost:3030/api/profiles/${userId}/experiences/${expId}`,
+        `https://server-linkedin-project-test.onrender.com/api/profiles/${userId}/experiences/${expId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -77,7 +77,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
     e.preventDefault();
     if (!expId) {
       fetch(
-        `http://localhost:3030/api/profiles/${userId}/experiences`,
+        `https://server-linkedin-project-test.onrender.com/api/profiles/${userId}/experiences`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -109,7 +109,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
         .catch(() => toast.error("oh oh riprova!"));
     } else {
       fetch(
-        `http://localhost:3030/api/profiles/${userId}/experiences/${expId}`,
+        `https://server-linkedin-project-test.onrender.com/api/profiles/${userId}/experiences/${expId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -63,7 +63,7 @@ export default function SingleExperience({
     }
     try {
       let response = await fetch(
-        `http://localhost:3030/api/profiles/${userId}/experiences/${experienceId}`,
+        `https://server-linkedin-project-test.onrender.com/api/profiles/${userId}/experiences/${experienceId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

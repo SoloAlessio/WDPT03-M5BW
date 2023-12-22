@@ -24,7 +24,7 @@ export default function NavBar() {
   const navigate = useNavigate("")
 
   useEffect(() => {
-    fetch("http://localhost:3030/api/profiles", {
+    fetch("https://server-linkedin-project-test.onrender.com/api/profiles", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -52,7 +52,7 @@ export default function NavBar() {
   };
 
   const getMyProfile = useCallback(() => {
-    fetch("http://localhost:3030/api/profiles/me", {
+    fetch("https://server-linkedin-project-test.onrender.com/api/profiles/me", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

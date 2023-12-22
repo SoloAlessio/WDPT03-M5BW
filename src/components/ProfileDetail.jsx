@@ -11,7 +11,7 @@ export default function ProfileDetail() {
   const token = localStorage.getItem("token")
 
   const getMyProfile = useCallback(() => {
-    fetch(`http://localhost:3030/api/profiles/${id}`, {
+    fetch(`https://server-linkedin-project-test.onrender.com/api/profiles/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -21,7 +21,7 @@ export default function ProfileDetail() {
   }, [id, token]);
 
   const getMyPersonalProfile = useCallback(() => {
-    fetch("http://localhost:3030/api/profiles/me", {
+    fetch("https://server-linkedin-project-test.onrender.com/api/profiles/me", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -24,7 +24,7 @@ const RegistrationForm = () => {
         e.preventDefault();
         console.log(JSON.stringify(formData))
 
-        const resp = await fetch("http://localhost:3030/api/profiles", {
+        const resp = await fetch("https://server-linkedin-project-test.onrender.com/api/profiles", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
