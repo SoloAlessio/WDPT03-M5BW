@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import { GoogleLoginButton } from 'react-social-login-buttons';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
@@ -72,6 +73,13 @@ const LoginForm = () => {
                                 Registrati
                             </Button>
                         </Link>
+                        <GoogleLoginButton
+                            onClick={() => {
+                                window.location.assign(
+                                    'https://server-linkedin-project-test.onrender.com/api/profiles/oauth-google'
+                                )
+                            }}
+                        />
                     </Form>
                 </Col>
             </Row>
