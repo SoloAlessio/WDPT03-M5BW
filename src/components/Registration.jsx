@@ -74,6 +74,7 @@ const RegistrationForm = () => {
                                 type="text"
                                 placeholder="Inserisci il tuo nome"
                                 name="name"
+                                required
                                 value={formData.name}
                                 onChange={handleInputChange}
                             />
@@ -85,6 +86,7 @@ const RegistrationForm = () => {
                                 type="text"
                                 placeholder="Area"
                                 name="area"
+                                required
                                 value={formData.area}
                                 onChange={handleInputChange}
                             />
@@ -96,6 +98,7 @@ const RegistrationForm = () => {
                                 type="text"
                                 placeholder="Ruolo ricoperto"
                                 name="title"
+                                required
                                 value={formData.title}
                                 onChange={handleInputChange}
                             />
@@ -107,6 +110,7 @@ const RegistrationForm = () => {
                                 type="email"
                                 placeholder="Inserisci la tua email"
                                 name="email"
+                                required
                                 value={formData.email}
                                 onChange={handleInputChange}
                             />
@@ -118,6 +122,7 @@ const RegistrationForm = () => {
                                 type="text"
                                 placeholder="Username"
                                 name="surname"
+                                required
                                 value={formData.surname}
                                 onChange={handleInputChange}
                             />
@@ -129,6 +134,7 @@ const RegistrationForm = () => {
                                 type="password"
                                 placeholder="Inserisci la tua password"
                                 name="password"
+                                required
                                 value={formData.password}
                                 onChange={handleInputChange}
                             />
