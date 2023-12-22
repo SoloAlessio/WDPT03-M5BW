@@ -134,7 +134,7 @@ const RegistrationForm = () => {
                             />
                         </Form.Group>
 
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary" type="submit" className='mt-2'>
                             Registrati
                         </Button>
                     </Form>
