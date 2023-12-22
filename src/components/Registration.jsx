@@ -35,7 +35,6 @@ const RegistrationForm = () => {
                 "Content-Type": "application/json",
             },
         })
-<<<<<<< HEAD
         if (allProfiles.ok) {
             const allProfilesJson = await allProfiles.json()
             const profile = allProfilesJson.find((profile) => profile.email === formData.email)
@@ -61,14 +60,6 @@ const RegistrationForm = () => {
                 alert("Utente già registrato, effettua il login")
                 navigate("/")
             }
-=======
-        if (resp.ok) {
-            const userAndToken = await resp.json()
-            alert("Utente registrato!")
-            localStorage.setItem("token", userAndToken.token)
-            console.log(resp.token)
-            navigate("/profile")
->>>>>>> parent of b28f08d (Update Registration.jsx)
         }
     };
 
