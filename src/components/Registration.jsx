@@ -38,7 +38,7 @@ const RegistrationForm = () => {
                 formData
             ),
         })
-        if (resp.ok) {
+        if (resp.ok) {//se la risposta è ok
             const userAndToken = await resp.json()
             alert("Utente registrato!")
             localStorage.setItem("token", userAndToken.token)
