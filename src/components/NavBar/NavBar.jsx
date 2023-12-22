@@ -14,12 +14,15 @@ import { Link } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
 import "./navbar.scss";
 import { useCallback, useEffect, useState } from "react";
+import Logout from "../Logout";
 
 export default function NavBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [profiles, setprofiles] = useState([]);
   const [filteredProfiles, setFilteredProfiles] = useState([]);
   const token = localStorage.getItem("token")
+
+
 
   useEffect(() => {
     fetch("http://localhost:3030/api/profile", {
@@ -223,9 +226,9 @@ export default function NavBar() {
                   <Row>
                     <Col>
                       <Link to={"/login"}>
-                      <Button className="rounded-pill fw-semibold btn-white w-100">
-                        Visualizza profilo
-                      </Button>
+                        <Button className="rounded-pill fw-semibold btn-white w-100">
+                          Visualizza profilo
+                        </Button>
                       </Link>
                     </Col>
                   </Row>
@@ -282,11 +285,14 @@ export default function NavBar() {
 
                 <NavDropdown.Divider />
 
-                <Container className="px-4">
-                  <Dropdown.Item href="/wip" className="px-0"> {/*<!--inserire il logout--> */}
-                    Esci
-                  </Dropdown.Item>
-                </Container>
+                <Link to={"/logout"}>
+                  <Container className="px-4">
+                    <Dropdown.Item href="/wip" className="px-0" onClick={Logout}>
+                      {/*<!--inserire il logout--> */}
+                      Esci
+                    </Dropdown.Item>
+                  </Container>
+                </Link>
               </NavDropdown>
             </Nav.Item>
 
