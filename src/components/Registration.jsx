@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Container, Row, Col, Form } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+
 
 const RegistrationForm = () => {
     // Stato per memorizzare i dati del modulo
@@ -8,8 +10,10 @@ const RegistrationForm = () => {
         surname: '',
         email: '',
         password: '',
+        area:'',
+        title:''
     });
-
+    
     // Funzione per gestire i cambiamenti nei campi del modulo
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -18,7 +22,8 @@ const RegistrationForm = () => {
             [name]: value,
         });
     };
-
+    
+    const navigate = useNavigate("")
     // Funzione per gestire l'invio del modulo
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -34,8 +39,11 @@ const RegistrationForm = () => {
             ),
         })
         if (resp.ok) {
+            const userAndToken = await resp.json()
             alert("Utente registrato!")
-            
+            localStorage.setItem("token", userAndToken.token)
+            console.log(resp.token)
+            navigate("/profile")
         }
     };
 
@@ -51,6 +59,28 @@ const RegistrationForm = () => {
                                 placeholder="Inserisci il tuo nome"
                                 name="name"
                                 value={formData.name}
+                                onChange={handleInputChange}
+                            />
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Form.Label>Area</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Area"
+                                name="area"
+                                value={formData.area}
+                                onChange={handleInputChange}
+                            />
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Form.Label>Title</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Ruolo ricoperto"
+                                name="title"
+                                value={formData.title}
                                 onChange={handleInputChange}
                             />
                         </Form.Group>
