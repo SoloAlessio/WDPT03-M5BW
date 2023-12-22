@@ -14,18 +14,22 @@ import { Link } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
 import "./navbar.scss";
 import { useCallback, useEffect, useState } from "react";
-import Logout from "../Logout";
+
+
+import { useNavigate } from 'react-router-dom';
+
 
 export default function NavBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [profiles, setprofiles] = useState([]);
   const [filteredProfiles, setFilteredProfiles] = useState([]);
   const token = localStorage.getItem("token")
+  const navigate = useNavigate("")
 
 
 
   useEffect(() => {
-    fetch("http://localhost:3030/api/profile", {
+    fetch("https://server-linkedin-project-test.onrender.com/api/profiles", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -46,8 +50,14 @@ export default function NavBar() {
 
   const [myProfile, setMyProfile] = useState("");
 
+  const clearLocalStorage = () => {
+    localStorage.clear();
+    navigate("/")
+    
+  };
+
   const getMyProfile = useCallback(() => {
-    fetch("http://localhost:3030/api/profiles/me", {
+    fetch("https://server-linkedin-project-test.onrender.com/api/profiles/me", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -132,7 +142,7 @@ export default function NavBar() {
             {/* Notifications */}
             <Nav.Item>
               <Link
-                to={`/profile`}
+                to={token === null ? "/" : `/profile`}
                 className="d-flex flex-column align-items-center justify-content-between nav-link active"
               >
                 <div className="position-relative">
@@ -225,10 +235,10 @@ export default function NavBar() {
                   </Link>
                   <Row>
                     <Col>
-                      <Link to={"/login"}>
-                        <Button className="rounded-pill fw-semibold btn-white w-100">
-                          Visualizza profilo
-                        </Button>
+                      <Link to={token === null ? "/" : `/profile`}>
+                      <Button className="rounded-pill fw-semibold btn-white w-100">
+                        Visualizza profilo
+                      </Button>
                       </Link>
                     </Col>
                   </Row>
@@ -285,14 +295,12 @@ export default function NavBar() {
 
                 <NavDropdown.Divider />
 
-                <Link to={"/logout"}>
-                  <Container className="px-4">
-                    <Dropdown.Item href="/wip" className="px-0" onClick={Logout}>
-                      {/*<!--inserire il logout--> */}
-                      Esci
-                    </Dropdown.Item>
-                  </Container>
-                </Link>
+                <Container className="px-4">
+                  <Dropdown.Item className="px-0"> {/*<!--inserire il logout--> */}
+                  <Button onClick={clearLocalStorage}>Esci</Button>
+                    
+                  </Dropdown.Item>
+                </Container>
               </NavDropdown>
             </Nav.Item>
 

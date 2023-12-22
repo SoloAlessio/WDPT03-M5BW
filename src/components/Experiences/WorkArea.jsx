@@ -12,7 +12,7 @@ export default function Experiences({ userId, myId }) {
 
   const getExperiences = useCallback(() => {
     fetch(
-      `http://localhost:3030/api/profiles/${userId}/experiences`,
+      `https://server-linkedin-project-test.onrender.com/api/profiles/${userId}/experiences`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

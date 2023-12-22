@@ -12,7 +12,8 @@ const LoginForm = () => {
         //inserire controllo campi vuoti
         //qui inseriremo il nostro server
 
-        const response = await fetch("http://localhost:3030/api/profiles/login", {
+        const response = await fetch("https://server-linkedin-project-test.onrender.com/api/profiles/login", {
+
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -5,6 +5,7 @@ import Experiences from "./Experiences/WorkArea.jsx";
 import { Link } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
 import { dotStream } from "ldrs";
+import { useNavigate } from 'react-router-dom';
 
 export default function Main() {
   dotStream.register();
@@ -12,9 +13,10 @@ export default function Main() {
   const [myProfile, setMyProfile] = useState("");
   const [myId, setMyId] = useState("");
   const token = localStorage.getItem("token")
-
+  const navigate = useNavigate("")
+  
   const getMyProfile = useCallback(() => {
-    fetch("http://localhost:3030/api/profiles/me", {
+    fetch("https://server-linkedin-project-test.onrender.com/api/profiles/me", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -23,16 +25,23 @@ export default function Main() {
       .then((data) => {
         setMyProfile(data);
         setMyId(data["_id"]);
-      });
+      })
+      .catch(() => {
+        localStorage.clear(); // Ripulisci localStorage
+        navigate('/')});
+      
 
-    fetch("http://localhost:3030/api/profiles", {
+    fetch("https://server-linkedin-project-test.onrender.com/api/profiles", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then((r) => r.json())
-      .then(setAllProfiles);
-  }, [token]);
+      .then(setAllProfiles)
+      .catch(() => {
+        localStorage.clear(); // Ripulisci localStorage
+        navigate('/')});
+  }, [token, navigate]);
 
   useEffect(() => {
     getMyProfile();

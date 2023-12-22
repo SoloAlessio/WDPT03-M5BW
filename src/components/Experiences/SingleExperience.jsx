@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import * as Icon from "react-bootstrap-icons";
 import AddExperience from "../AddExperience/Index";
 import imgDefault from "./default_exp_img.png";
-const token = localStorage.getItem("token")
+
 
 const DateDifference = (a, b) => {
   if (a === null) {
@@ -57,13 +57,15 @@ export default function SingleExperience({
   const dataFine =
     Experience.endDate === null ? new Date() : new Date(Experience.endDate);
 
+
+  const token = localStorage.getItem("token")
   const handleDelete = async (experienceId, userId) => {
     if (!window.confirm("Are you sure?")) {
       return;
     }
     try {
       let response = await fetch(
-        `http://localhost:3030/api/profiles/${userId}/experiences/${experienceId}`,
+        `https://server-linkedin-project-test.onrender.com/api/profiles/${userId}/experiences/${experienceId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
