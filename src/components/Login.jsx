@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
@@ -13,6 +13,7 @@ const LoginForm = () => {
         //qui inseriremo il nostro server
 
         const response = await fetch("https://server-linkedin-project-test.onrender.com/api/profiles/login", {
+
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -40,7 +41,7 @@ const LoginForm = () => {
         <Container>
             <Row>
                 <Col xs={12} md={6}>
-                    <Form onSubmit={handleLogin}>
+                    <Form onSubmit={handleLogin} className='mt-2'>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Email</Form.Label>
                             <Form.Control
@@ -62,9 +63,15 @@ const LoginForm = () => {
                             />
                         </Form.Group>
 
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary" type="submit" className='me-3'>
                             Login
                         </Button>
+
+                        <Link to="/registration">
+                            <Button variant="primary" className='m-3'>
+                                Registrati
+                            </Button>
+                        </Link>
                     </Form>
                 </Col>
             </Row>

@@ -14,7 +14,10 @@ import { Link } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
 import "./navbar.scss";
 import { useCallback, useEffect, useState } from "react";
+
+
 import { useNavigate } from 'react-router-dom';
+
 
 export default function NavBar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,6 +25,8 @@ export default function NavBar() {
   const [filteredProfiles, setFilteredProfiles] = useState([]);
   const token = localStorage.getItem("token")
   const navigate = useNavigate("")
+
+
 
   useEffect(() => {
     fetch("https://server-linkedin-project-test.onrender.com/api/profiles", {

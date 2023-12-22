@@ -1,0 +1,12 @@
+//componente per logout eliminando il localstorage e reindirizzando alla home
+import { toast } from 'react-toastify';
+import { navigate } from '@reach/router';
+
+const Logout = () => {
+  localStorage.removeItem('token');
+  toast.success('Logout effettuato con successo');
+  navigate('/')
+}
+
+export default Logout;
+
