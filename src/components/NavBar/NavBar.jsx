@@ -15,20 +15,28 @@ import * as Icon from "react-bootstrap-icons";
 import "./navbar.scss";
 import { useCallback, useEffect, useState } from "react";
 
+
+import { useNavigate } from 'react-router-dom';
+
+
 export default function NavBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [profiles, setprofiles] = useState([]);
   const [filteredProfiles, setFilteredProfiles] = useState([]);
+  const token = localStorage.getItem("token")
+  const navigate = useNavigate("")
+
+
 
   useEffect(() => {
-    fetch("https://striveschool-api.herokuapp.com/api/profile", {
+    fetch("https://server-linkedin-project-test.onrender.com/api/profiles", {
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((r) => r.json())
       .then(setprofiles);
-  }, []);
+  }, [token]);
 
   function Filter() {
     setFilteredProfiles(
@@ -42,17 +50,23 @@ export default function NavBar() {
 
   const [myProfile, setMyProfile] = useState("");
 
+  const clearLocalStorage = () => {
+    localStorage.clear();
+    navigate("/")
+    
+  };
+
   const getMyProfile = useCallback(() => {
-    fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
+    fetch("https://server-linkedin-project-test.onrender.com/api/profiles/me", {
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((r) => r.json())
       .then((data) => {
         setMyProfile(data);
       });
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     getMyProfile();
@@ -63,7 +77,7 @@ export default function NavBar() {
       <Container>
         {/* NAVBAR Icon */}
         <Navbar.Brand className="me-2">
-          <Link to={"/Profile"}>
+          <Link to={token ? "/profile" : "/"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -128,7 +142,7 @@ export default function NavBar() {
             {/* Notifications */}
             <Nav.Item>
               <Link
-                to={`/`}
+                to={token === null ? "/" : `/profile`}
                 className="d-flex flex-column align-items-center justify-content-between nav-link active"
               >
                 <div className="position-relative">
@@ -221,9 +235,11 @@ export default function NavBar() {
                   </Link>
                   <Row>
                     <Col>
+                      <Link to={token === null ? "/" : `/profile`}>
                       <Button className="rounded-pill fw-semibold btn-white w-100">
                         Visualizza profilo
                       </Button>
+                      </Link>
                     </Col>
                   </Row>
                 </Container>
@@ -270,7 +286,7 @@ export default function NavBar() {
                     href="/wip"
                     className="text-truncate px-0 fs-7"
                   >
-                    Account per la pubblicazione di offer..
+                    Account per la pubblicazione di off...
                   </Dropdown.Item>
                   <Dropdown.Item href="/wip" className="px-0 fs-7">
                     Lingua
@@ -280,8 +296,9 @@ export default function NavBar() {
                 <NavDropdown.Divider />
 
                 <Container className="px-4">
-                  <Dropdown.Item href="/wip" className="px-0">
-                    Esci
+                  <Dropdown.Item className="px-0"> {/*<!--inserire il logout--> */}
+                  <Button onClick={clearLocalStorage}>Esci</Button>
+                    
                   </Dropdown.Item>
                 </Container>
               </NavDropdown>

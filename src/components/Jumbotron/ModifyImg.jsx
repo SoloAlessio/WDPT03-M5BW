@@ -9,22 +9,23 @@ function ModifyImg({ myProfile, getMyProfile, show, setShow }) {
   const handleClose = () => setShow(false);
   const [fd, setFd] = useState(new FormData());
   const [loading, setLoading] = useState(false)
-
+  const token = localStorage.getItem("token")
+  
   const handleFile = (ev) => {
     setFd((prev) => {
-      prev.delete("profile");
-      prev.append("profile", ev.target.files[0]);
+      prev.delete("profile-img");
+      prev.append("profile-img", ev.target.files[0]);
       return prev;
     });
     ev.preventDefault();
     setLoading(true);
     fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${myProfile["_id"]}/picture`,
+      `https://server-linkedin-project-test.onrender.com/api/profiles/${myProfile["_id"]}/image`,
       {
-        method: "POST",
+        method: "PATCH",
         body: fd,
         headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     ).then((response) => {

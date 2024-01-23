@@ -9,15 +9,16 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
   const [checked, setChecked] = useState(false);
   const [fd, setFd] = useState(new FormData());
   const [loading, setLoading] = useState(false);
+  const token = localStorage.getItem("token")
   ring.register();
   const uploadImg = () => {
     fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}/picture`,
+      `https://server-linkedin-project-test.onrender.com/api/profiles/${userId}/experiences/${expId}/image`,
       {
-        method: "POST",
+        method: "PATCH",
         body: fd,
         headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     ).then(() => {
@@ -27,8 +28,8 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
 
   const handleFile = (ev) => {
     setFd((prev) => {
-      prev.delete("experience");
-      prev.append("experience", ev.target.files[0]);
+      prev.delete("experience-img");
+      prev.append("experience-img", ev.target.files[0]);
       return prev;
     });
   };
@@ -47,10 +48,10 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
   useEffect(() => {
     if (expId) {
       fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}`,
+        `https://server-linkedin-project-test.onrender.com/api/profiles/${userId}/experiences/${expId}`,
         {
           headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       )
@@ -61,25 +62,25 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
             company: experience.company,
             startDate: experience.startDate.slice(0, 10),
             endDate:
-              experience.endDate?.slice(0, 10) ||
-              new Date().toISOString().slice(0, 10),
+            experience.endDate?.slice(0, 10) ||
+            new Date().toISOString().slice(0, 10),
             description: experience.description,
             area: experience.area,
           });
           setChecked(!experience.endDate);
         });
     }
-  }, [expId, userId]);
+  }, [expId, userId, token]);
 
   const handleSubmit = (e) => {
     setLoading(true);
     e.preventDefault();
     if (!expId) {
       fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences`,
+        `https://server-linkedin-project-test.onrender.com/api/profiles/${userId}/experiences`,
         {
           headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           method: "POST",
@@ -94,7 +95,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
             role: "",
             company: "",
             startDate: "",
-            endDate: new Date().toString().slice(0, 10),
+            endDate: "",
             description: "",
             area: "",
           });
@@ -108,10 +109,10 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
         .catch(() => toast.error("oh oh riprova!"));
     } else {
       fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}`,
+        `https://server-linkedin-project-test.onrender.com/api/profiles/${userId}/experiences/${expId}`,
         {
           headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           method: "PUT",
@@ -228,7 +229,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
                     id="endDate"
                     value={checked ? "" : form.endDate}
                     onChange={(e) => {
-                      setForm({ ...form, endDate: e.target.value });
+                      setForm({ ...form, endDate: e.target.value});
                     }}
                   />
                   <Form.Check
@@ -236,7 +237,7 @@ function AddExperience({ userId, show, setShow, expId, getExperiences }) {
                     checked={checked}
                     style={{ fontSize: "14px" }}
                     label={`Attualmente ricopro questo ruolo`}
-                    onChange={() => setChecked(!checked)}
+                    onChange={() => {setChecked(!checked); setForm({ ...form, endDate: new Date().toISOString().slice(0, 10)})}}
                   />
                 </Form.Group>
               </Row>

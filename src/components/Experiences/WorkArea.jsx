@@ -8,19 +8,20 @@ import SingleExperience from "./SingleExperience";
 export default function Experiences({ userId, myId }) {
   const [show, setShow] = useState(false);
   const [exp, setExp] = useState([]);
+  const token = localStorage.getItem("token")
 
   const getExperiences = useCallback(() => {
     fetch(
-      `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences`,
+      `https://server-linkedin-project-test.onrender.com/api/profiles/${userId}/experiences`,
       {
         headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     )
       .then((r) => r.json())
       .then(setExp);
-  }, [userId]);
+  }, [userId, token]);
 
   useEffect(() => {
     getExperiences();

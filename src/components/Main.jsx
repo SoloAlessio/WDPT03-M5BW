@@ -5,33 +5,43 @@ import Experiences from "./Experiences/WorkArea.jsx";
 import { Link } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
 import { dotStream } from "ldrs";
+import { useNavigate } from 'react-router-dom';
 
 export default function Main() {
   dotStream.register();
   const [allProfiles, setAllProfiles] = useState("");
   const [myProfile, setMyProfile] = useState("");
   const [myId, setMyId] = useState("");
-
+  const token = localStorage.getItem("token")
+  const navigate = useNavigate("")
+  
   const getMyProfile = useCallback(() => {
-    fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
+    fetch("https://server-linkedin-project-test.onrender.com/api/profiles/me", {
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((r) => r.json())
       .then((data) => {
         setMyProfile(data);
         setMyId(data["_id"]);
-      });
+      })
+      .catch(() => {
+        localStorage.clear(); // Ripulisci localStorage
+        navigate('/')});
+      
 
-    fetch("https://striveschool-api.herokuapp.com/api/profile", {
+    fetch("https://server-linkedin-project-test.onrender.com/api/profiles", {
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_MY_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((r) => r.json())
-      .then(setAllProfiles);
-  }, []);
+      .then(setAllProfiles)
+      .catch(() => {
+        localStorage.clear(); // Ripulisci localStorage
+        navigate('/')});
+  }, [token, navigate]);
 
   useEffect(() => {
     getMyProfile();
